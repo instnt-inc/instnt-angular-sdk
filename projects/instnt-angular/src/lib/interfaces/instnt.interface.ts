@@ -1,0 +1,22 @@
+export interface Instnt {
+    base64toBlob: (b64Data: any, sliceSize: number) => {}
+    buildErrorMessage: (process: any, context: any, data: any, status: any) => {},
+    documentVerification: true,
+    emit: (event: any) => {},
+    formKey: string,
+    getToken: () => {},
+    getTransactionStatus: (transaction_id: string) => {},
+    init: () => {},
+    initFingerprintJS: () => {},
+    initImageProcessor: () => {},
+    instnttxnid: string,
+    load_scripts: (script_urls: string) => {},
+    onEvent: (data: any) => {},
+    otpVerification: true,
+    sendOTP: (mobileNumber: string) => {},
+    submitCustomForm: (data: any, redirect: string) => {},
+    submitData: (data: {}, redirect: boolean) => {},
+    uploadAttachment: (attachment: any, documentSide: any, isSelfie: boolean) => {},
+    verifyDocuments: (documentType: any) => {},
+    verifyOTP: (mobileNumber: string, otpCode: string) => {},
+}

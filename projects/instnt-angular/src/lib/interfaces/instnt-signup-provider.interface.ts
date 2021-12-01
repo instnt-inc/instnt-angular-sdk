@@ -1,7 +1,7 @@
 export interface InstntSignupProviderProps {
-    formKey: String;
-    onEvent: any;
-    sandbox: any;
+    form_key: String;
     serviceURL: any;
-    children: any;
+    onEvent: any;
+    sandbox?: any;
+    children?: any;
 }

@@ -7,13 +7,14 @@ import { HttpClient } from '@angular/common/http';
 })
 export class InstntAngularService {
 
-  constructor(public http: HttpClient) { }
-
-  public onSubmitName(firstName: string, lastName: string) {
-    return `${firstName} ${lastName} Passed!`
-  }
+  constructor(private http: HttpClient) { }
 
   public instntInit(props: InstntSignupProviderProps) {
-    return this.http.get(props.serviceURL + '/public/transactions?idmetrics_version=4.5.4');
+    const data = {
+      form_key: props.form_key,
+      hide_form_fields: true,
+      redirect: false,
+    }
+    return this.http.post(props.serviceURL + '/public/transactions?idmetrics_version=4.5.4', data);
   }
 }

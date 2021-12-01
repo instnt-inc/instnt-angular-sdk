@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { InstntAngularComponent } from './instnt-angular.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -8,6 +9,7 @@ import { InstntAngularComponent } from './instnt-angular.component';
     InstntAngularComponent
   ],
   imports: [
+    HttpClientModule
   ],
   exports: [
     InstntAngularComponent
