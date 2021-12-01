@@ -18,5 +18,4 @@ export class InstntAngularComponent implements OnInit {
   ngOnInit(): void {
     console.log('Form Id =', this.formId);
   }
-
 }
