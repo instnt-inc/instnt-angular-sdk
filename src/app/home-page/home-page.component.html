@@ -1,3 +1,5 @@
 <h1>Home Page</h1>
-<lib-instnt-angular [formId]="'123'"></lib-instnt-angular>
-<div id="instnt-form-generator" #innerDivElement></div>
+<!-- <lib-instnt-angular [formId]="'123'"></lib-instnt-angular> -->
+<instnt-signup-provider [formId]="formId" [serviceURL]="serviceURL" [onEvent]="onEvent" [children]="children"
+    [hideFormFields]="hideFormFields" [redirect]="redirect">
+</instnt-signup-provider>
