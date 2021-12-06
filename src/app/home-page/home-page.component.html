@@ -1,4 +1,32 @@
-<h1>Home Page</h1>
+<!-- Header Component -->
+<mat-toolbar color="primary">
+    <h1>Instnt Signup Demo</h1>
+</mat-toolbar>
+
+<div class="container">
+    <h2>The process consist of the below steps</h2>
+    <mat-list>
+        <mat-list-item>
+            <mat-icon>lens</mat-icon><span>Fill up the signup form</span>
+        </mat-list-item>
+        <mat-list-item>
+            <mat-icon>lens</mat-icon><span>Submit OTP</span>
+        </mat-list-item>
+        <mat-list-item>
+            <mat-icon>lens</mat-icon><span>Capture Photos of your ID</span>
+        </mat-list-item>
+        <mat-list-item>
+            <mat-icon>lens</mat-icon><span>Take Selfie</span>
+        </mat-list-item>
+        <mat-list-item>
+            <mat-icon>lens</mat-icon><span>Verify and Approve</span>
+        </mat-list-item>
+    </mat-list>
+    <div class="get-started">
+        <!-- 'mat-button','mat-raised-button', 'mat-flat-button','mat-stroked-button','mat-icon-button','mat-fab','mat-mini-fab' -->
+        <button mat-raised-button color="primary">Get Started</button>
+    </div>
+</div>
 <!-- <lib-instnt-angular [formId]="'123'"></lib-instnt-angular> -->
 <instnt-signup-provider [formId]="formId" [serviceURL]="serviceURL" [onEvent]="onEvent" [children]="children"
     [hideFormFields]="hideFormFields" [redirect]="redirect">
