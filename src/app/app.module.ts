@@ -5,6 +5,7 @@ import { InstntAngularModule } from 'projects/instnt-angular/src/public-api';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomePageComponent } from './home-page/home-page.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { HomePageComponent } from './home-page/home-page.component';
     BrowserModule,
     AppRoutingModule,
     InstntAngularModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
