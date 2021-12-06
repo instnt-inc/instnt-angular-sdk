@@ -17,11 +17,8 @@ export class HomePageComponent implements OnInit {
   hideFormFields?: boolean = true;
   redirect?: boolean = false;
 
-  constructor(public instntService: InstntAngularService) { }
+  constructor() { }
   ngOnInit(): void {
-    this.instntService.getInstnt().subscribe((instnt) => {
-      console.log('success', instnt);
-    })
   }
 
 }

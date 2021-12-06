@@ -1,0 +1,75 @@
+<div class="flex-center">
+  <mat-card>
+    <mat-card-title>Enter Your Contact Information</mat-card-title>
+    <mat-card-subtitle>All fields are required</mat-card-subtitle>
+    <mat-card-content>
+      <form [formGroup]="signUpForm" action="submit">
+        <mat-form-field class="full-width" appearance="fill">
+          <mat-label>First Name</mat-label>
+          <input type="text" matInput placeholder="John" [formControl]="firstName" required>
+        </mat-form-field>
+        <div class="error-div-style" *ngIf="firstName.errors && (firstName.dirty || firstName.touched)">
+          <mat-error class="error-msg-style"
+            *ngIf="firstName.errors && (firstName.dirty || firstName.touched) && firstName.errors['required']">First
+            name is required</mat-error>
+          <mat-error class="error-msg-style"
+            *ngIf="firstName.errors && (firstName.dirty || firstName.touched) && firstName.errors['pattern']">First name
+            should not have numbers and special characters</mat-error>
+          <mat-error class="error-msg-style"
+            *ngIf="firstName.errors && (firstName.dirty || firstName.touched) && firstName.errors['maxlength']">First
+            name should not have more than 50 characters ({{ firstName.errors['maxlength'].actualLength }})</mat-error>
+        </div>
+        <mat-form-field class="full-width" appearance="fill">
+          <mat-label>Last Name</mat-label>
+          <input type="text" matInput placeholder="Smith" [formControl]="lastName" required>
+        </mat-form-field>
+        <div class="error-div-style" *ngIf="lastName.errors && (lastName.dirty || lastName.touched)">
+          <mat-error class="error-msg-style"
+            *ngIf="lastName.errors && (lastName.dirty || lastName.touched) && lastName.errors['required']">Last name is
+            required</mat-error>
+          <mat-error class="error-msg-style"
+            *ngIf="lastName.errors && (lastName.dirty || lastName.touched) && lastName.errors['pattern']">Last name
+            should not have numbers and special characters</mat-error>
+          <mat-error class="error-msg-style"
+            *ngIf="lastName.errors && (lastName.dirty || lastName.touched) && lastName.errors['maxlength']">Last name
+            should not have more than 50 characters ({{ lastName.errors['maxlength'].actualLength }})</mat-error>
+        </div>
+        <mat-form-field class="full-width" appearance="fill">
+          <mat-label>Phone Number</mat-label>
+          <span matPrefix>+1 &nbsp;</span>
+          <input type="tel" matInput placeholder="XXX-XXX-XXXX" [formControl]="phone" required>
+        </mat-form-field>
+        <div class="error-div-style" *ngIf="phone.errors && (phone.dirty || phone.touched)">
+          <mat-error class="error-msg-style"
+            *ngIf="phone.errors && (phone.dirty || phone.touched) && phone.errors['required']">Phone is required
+          </mat-error>
+          <mat-error class="error-msg-style"
+            *ngIf="phone.errors && (phone.dirty || phone.touched) && phone.errors['pattern']">Please enter valid phone
+            format XXX-XXX-XXXX</mat-error>
+          <mat-error class="error-msg-style"
+            *ngIf="phone.errors && (phone.dirty || phone.touched) && phone.errors['maxlength']">Phone should not have
+            more than 20 characters ({{ phone.errors['maxlength'].actualLength }})</mat-error>
+        </div>
+        <mat-form-field class="full-width" appearance="fill">
+          <mat-label>email</mat-label>
+          <input type="email" matInput placeholder="username@instnt.com" [formControl]="email" required>
+        </mat-form-field>
+        <div class="error-div-style" *ngIf="email.errors && (email.dirty || email.touched)">
+          <mat-error class="error-msg-style"
+            *ngIf="email.errors && (email.dirty || email.touched) && email.errors['required']">Email is required
+          </mat-error>
+          <mat-error class="error-msg-style"
+            *ngIf="email.errors && (email.dirty || email.touched) && email.errors['pattern']">Sorry, only letters (a-z),
+            numbers (0-9), plus sign (+) and periods (.) are allowed.</mat-error>
+          <mat-error class="error-msg-style"
+            *ngIf="email.errors && (email.dirty || email.touched) && email.errors['maxlength']">Email should not have
+            more than 100 characters ({{ email.errors['maxlength'].actualLength }})</mat-error>
+        </div>
+      </form>
+    </mat-card-content>
+    <div class="buttons">
+      <button [routerLink]="['/']" routerLinkActive="router-link-active"  mat-raised-button color="primary">Back Home</button>
+      <button mat-raised-button color="primary">Next Step</button>
+    </div>
+  </mat-card>
+</div>

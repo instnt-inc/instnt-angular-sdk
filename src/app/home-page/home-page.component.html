@@ -1,13 +1,9 @@
-<!-- Header Component -->
-<mat-toolbar color="primary">
-    <h1>Instnt Signup Demo</h1>
-</mat-toolbar>
-
-<div class="container">
-    <h2>The process consist of the below steps</h2>
+<div class="flex-center" style="padding-top: 12px;">
+    <div class="container">
+        <h2>This process consist of the following steps</h2>
     <mat-list>
         <mat-list-item>
-            <mat-icon>lens</mat-icon><span>Fill up the signup form</span>
+            <mat-icon>lens</mat-icon><span>Submit the signup form</span>
         </mat-list-item>
         <mat-list-item>
             <mat-icon>lens</mat-icon><span>Submit OTP</span>
@@ -24,10 +20,8 @@
     </mat-list>
     <div class="get-started">
         <!-- 'mat-button','mat-raised-button', 'mat-flat-button','mat-stroked-button','mat-icon-button','mat-fab','mat-mini-fab' -->
-        <button mat-raised-button color="primary">Get Started</button>
+        <button [routerLink]="['/sign-up']" routerLinkActive="router-link-active"  mat-raised-button color="primary">Get Started</button>
+    </div>
     </div>
 </div>
 <!-- <lib-instnt-angular [formId]="'123'"></lib-instnt-angular> -->
-<instnt-signup-provider [formId]="formId" [serviceURL]="serviceURL" [onEvent]="onEvent" [children]="children"
-    [hideFormFields]="hideFormFields" [redirect]="redirect">
-</instnt-signup-provider>
