@@ -20,3 +20,23 @@ export interface Instnt {
     verifyDocuments: (documentType: any) => {},
     verifyOTP: (mobileNumber: string, otpCode: string) => {},
 }
+
+export interface InstntEvent {
+    type: EventType,
+    data: any
+}
+
+export enum EventType {
+    TransactionInitiated = 'transaction.initiated',
+    TransactionProcessed = 'transaction.processed',
+    TransactionError = 'transaction.error',
+    DocumentCaptured = 'document.captured',
+    DocumentUploaded = 'document.uploaded',
+    DocumentCaptureCancelled = 'document.capture-cancelled',
+    DocumentVerificationInit = 'document.verification-initiated',
+    DocumentVerified = 'document.verified',
+    DocumentError = 'document.error',
+    OTPSent = 'otp.sent',
+    OTPVerified = 'otp.verified',
+    OTPError = 'otp.error'
+}

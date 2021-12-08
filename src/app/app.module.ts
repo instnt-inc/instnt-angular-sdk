@@ -14,12 +14,16 @@ import {MatCardModule} from '@angular/material/card';
 import { SignupComponent } from './signup/signup.component';
 import {MatInputModule} from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { OtpVerificationComponent } from './otp-verification/otp-verification.component';
+import { EventHandlerService } from './services/event-handler.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomePageComponent,
-    SignupComponent
+    SignupComponent,
+    OtpVerificationComponent
   ],
   imports: [
     BrowserModule,
@@ -32,9 +36,10 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatListModule,
     MatIconModule,
     MatCardModule,
-    MatInputModule
+    MatInputModule,
+    MatProgressSpinnerModule
   ],
-  providers: [],
+  providers: [ EventHandlerService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

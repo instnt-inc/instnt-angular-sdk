@@ -1,0 +1,70 @@
+<div class="flex-center">
+    <mat-card>
+        <mat-card-title>Verify Phone Number With OTP</mat-card-title>
+        <mat-card-subtitle>Please enter a phone number to send a one time password to</mat-card-subtitle>
+        <mat-card-content *ngIf="!(isLoading | async); else loading">
+            <div *ngIf="errorMessage" class="error-box">
+                <mat-icon class="cursor" aria-hidden="false" aria-label="Example home icon" (click)="errorMessage = ''">close</mat-icon>
+                {{ errorMessage }}
+            </div>
+            <form [formGroup]="phoneVerifyForm" action="submit">
+                <mat-form-field class="full-width" appearance="fill">
+                    <mat-label>Phone Number</mat-label>
+                    <span matPrefix>+1 &nbsp;</span>
+                    <input type="tel" matInput placeholder="XXX-XXX-XXXX" [formControl]="phone" required>
+                </mat-form-field>
+                <div class="error-div-style" *ngIf="phone.errors && (phone.dirty || phone.touched)">
+                    <mat-error class="error-msg-style"
+                        *ngIf="phone.errors && (phone.dirty || phone.touched) && phone.errors['required']">Phone is
+                        required
+                    </mat-error>
+                    <mat-error class="error-msg-style"
+                        *ngIf="phone.errors && (phone.dirty || phone.touched) && phone.errors['pattern']">
+                        Please enter valid phone format XXX-XXX-XXXX</mat-error>
+                    <mat-error class="error-msg-style"
+                        *ngIf="phone.errors && (phone.dirty || phone.touched) && phone.errors['maxlength']">
+                        Phone should not have more than 20 characters ({{ phone.errors['maxlength'].actualLength }})
+                    </mat-error>
+                </div>
+            </form>
+            <div style="text-align: end;">
+                <button mat-raised-button color="primary" [disabled]="!phoneVerifyForm.valid" (click)="onSendOTP()">
+                    Send Code</button>
+            </div>
+            <div style="margin-top: 20px;" *ngIf="isOtpReceived">
+                <span>Please enter the code sent to your phone</span>
+                <form [formGroup]="otpVerifyForm" action="submit">
+                    <mat-form-field class="full-width" appearance="fill">
+                        <mat-label>Code</mat-label>
+                        <input type="number" matInput [formControl]="otpVerify" required>
+                    </mat-form-field>
+                    <div class="error-div-style" *ngIf="otpVerify.errors && (otpVerify.dirty || otpVerify.touched)">
+                        <mat-error class="error-msg-style"
+                            *ngIf="otpVerify.errors && (otpVerify.dirty || otpVerify.touched) && otpVerify.errors['required']">
+                            Code is Required
+                        </mat-error>
+                    </div>
+                </form>
+            </div>
+        </mat-card-content>
+        <hr style="margin-top: 30px;" *ngIf="!isOtpReceived">
+        <div class="buttons">
+            <button [routerLink]="['/sign-up']" routerLinkActive="router-link-active" mat-raised-button
+                color="primary">Back</button>
+            <span style="margin-top: 8px;">2/4</span>
+            <button [routerLink]="['/otp-verify']" routerLinkActive="router-link-active" mat-raised-button
+                color="primary" [disabled]="!otpVerifyForm.valid || !phoneVerifyForm.valid"
+                (click)="onSubmitOTP()">Verify OTP</button>
+        </div>
+    </mat-card>
+</div>
+<ng-template #loading>
+    <div class="loading">
+        <div class="flex-center">
+            <mat-spinner color="accent" diameter="50"></mat-spinner>
+        </div>
+        <div style="text-align: center;">
+            {{loadingMessage}}
+        </div>
+    </div>
+</ng-template>

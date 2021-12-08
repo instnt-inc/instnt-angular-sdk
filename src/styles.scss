@@ -1,9 +1,49 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+    height: 100%;
+}
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
 .flex-center {
     display: flex;
     justify-content: center;
+}
+
+mat-card {
+    margin-top: 20px;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.error-box {
+    display: block;
+    text-align: center;
+    border: 1px solid rgb(155, 7, 7);
+    background-color: rgb(255, 216, 216);
+    padding: 8px;
+    margin: 4px;
+    border-radius: 4px;
+    mat-icon {
+        text-align: end;
+        float: right;
+        position: relative;
+        top: -4px;
+    }
+}
+
+.error-div-style {
+    margin-top: -18px;
+    font-size: 9pt;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
 }
