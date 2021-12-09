@@ -2,7 +2,7 @@
     <mat-card>
         <mat-card-title>Verify Phone Number With OTP</mat-card-title>
         <mat-card-subtitle>Please enter a phone number to send a one time password to</mat-card-subtitle>
-        <mat-card-content *ngIf="!(isLoading | async); else loading">
+        <mat-card-content *ngIf="!isLoading; else loading">
             <div *ngIf="errorMessage" class="error-box">
                 <mat-icon class="cursor" aria-hidden="false" aria-label="Example home icon" (click)="errorMessage = ''">close</mat-icon>
                 {{ errorMessage }}

@@ -14,7 +14,7 @@ export class AppComponent {
   children?: any;
 
   constructor(public instntService: InstntAngularService, private handler: EventHandlerService) {
-    this.onEvent = handler.eventHandler;
+    this.onEvent = this.handler.eventHandler;
    }
   ngOnInit(): void {
     this.instntService.getInstnt().subscribe((instnt) => {

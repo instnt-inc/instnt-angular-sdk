@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { InstntAngularModule } from 'projects/instnt-angular/src/public-api';
+import { InstntAngularModule, InstntAngularService } from 'projects/instnt-angular/src/public-api';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -39,7 +39,7 @@ import { EventHandlerService } from './services/event-handler.service';
     MatInputModule,
     MatProgressSpinnerModule
   ],
-  providers: [ EventHandlerService ],
+  providers: [ EventHandlerService, InstntAngularService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

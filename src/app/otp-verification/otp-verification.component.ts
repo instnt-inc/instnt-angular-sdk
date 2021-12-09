@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Instnt, InstntAngularService } from 'projects/instnt-angular/src/public-api';
-import { Subject } from 'rxjs';
+import { firstValueFrom, lastValueFrom, map, Observable, pipe, Subject } from 'rxjs';
 import { EventHandlerService } from '../services/event-handler.service';
 
 @Component({
@@ -11,8 +11,8 @@ import { EventHandlerService } from '../services/event-handler.service';
 })
 export class OtpVerificationComponent implements OnInit {
 
-  isLoading: Subject<boolean> = new Subject();
-  isOtpReceived: Subject<boolean> = new Subject();
+  isLoading = false;
+  isOtpReceived = false;
   loadingMessage = '';
   errorMessage = '';
   instnt?: Instnt;
@@ -22,7 +22,7 @@ export class OtpVerificationComponent implements OnInit {
   otpVerifyForm: FormGroup;
   otpVerify = new FormControl('', Validators.required);
 
-  constructor(private instntService: InstntAngularService, private handler: EventHandlerService, private ref: ChangeDetectorRef) {
+  constructor(public instntService: InstntAngularService, public handler: EventHandlerService) {
     this.instntService.getInstnt().subscribe((instnt) => this.instnt = instnt);
     this.phoneVerifyForm = new FormGroup({
       phone: this.phone,
@@ -37,37 +37,35 @@ export class OtpVerificationComponent implements OnInit {
 
   onSendOTP() {
     this.loadingMessage = 'Sending Code, Please Wait';
-    this.isLoading.next(true);
+    this.isLoading = true
     const phone = '+1' + this.phoneVerifyForm.get('phone')?.value;
     this.instnt?.sendOTP(phone);
-    this.handler.OTPSent.subscribe({
-      next: (data) => {
-        console.log('OTP Sent inside subscribe', data);
-        this.isLoading.next(false);
-        this.isOtpReceived.next(true);
-        console.log('this.isLoading = ', this.isLoading)
-        this.ref.detectChanges();
-        this.ref.reattach();
-      }, error: (error) => {
-        console.error(error);
-        this.isLoading.next(false);
-        this.ref.detectChanges();
-        this.ref.reattach();
-      }, complete: () => {
-        this.isLoading.next(false);
-      }
+    const promise = firstValueFrom(this.handler.OTPSent);
+    promise.then((data) => {
+      console.log('OTP Sent inside promise.then', data);
+      this.isLoading = false;
+      this.isOtpReceived = true;
+    }).catch((err) => {
+      console.error(err);
+      this.errorMessage = err;
     })
+
+  }
+
+  isLoadingOrNot() {
+    return this.isLoading
   }
 
   onSubmitOTP() {
     this.loadingMessage = 'Verifying Code, Please Wait';
-    this.isLoading.next(true);
+    this.isLoading = true
     const phone = '+1' + this.phoneVerifyForm.get('phone')?.value;
     this.instnt?.verifyOTP(phone, this.otpVerifyForm.get('otpVerify')?.value);
-    this.handler.OTPVerified.subscribe((data) => {
+    firstValueFrom(this.handler.OTPVerified).then((data) => {
       console.log('OTP verified', data);
-      this.isLoading.next(false);
-    })
+      this.isLoading = false
+      console.log('navigate to next component');
+    });
 
   }
 
