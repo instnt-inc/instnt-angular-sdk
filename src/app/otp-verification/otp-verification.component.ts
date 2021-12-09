@@ -46,8 +46,10 @@ export class OtpVerificationComponent implements OnInit {
       this.isLoading = false;
       this.isOtpReceived = true;
     }).catch((err) => {
-      console.error(err);
-      this.errorMessage = err;
+      console.error(err.message);
+      this.errorMessage = err.message;
+    }).finally(() => {
+      this.isLoading = false;
     })
 
   }

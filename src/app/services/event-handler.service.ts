@@ -31,7 +31,7 @@ export class EventHandlerService {
           break;
         case EventType.OTPError:
           console.log('event type otp.error triggered', event);
-          this.OTPVerified.error(event);
+          this.OTPSent.error(event.data);
           break;
           default:
             console.log("unhandled instnt event ", event);
