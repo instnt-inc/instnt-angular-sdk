@@ -1,0 +1,29 @@
+<div class="flex-center">
+    <mat-card>
+        <mat-card-title>Upload Document</mat-card-title>
+        <mat-card-subtitle>Please take a photo of your driver's licence</mat-card-subtitle>
+        <mat-card-content *ngIf="!isLoading; else loading">
+            <input type="file" capture="camera" accept="image/*" id="cameraInput" name="cameraInput"
+                (change)="onFileSelected($event)">
+            <!-- <button type="button" (click)="onUpload()">Upload File</button> -->
+        </mat-card-content>
+        <hr style="margin-top: 30px;">
+        <div class="buttons">
+            <button [routerLink]="['/sign-up']" routerLinkActive="router-link-active" mat-raised-button
+                color="primary">Back</button>
+            <span style="margin-top: 8px;">2/4</span>
+            <button [routerLink]="['/otp-verify']" routerLinkActive="router-link-active" mat-raised-button
+                color="primary">Verify OTP</button>
+        </div>
+    </mat-card>
+</div>
+<ng-template #loading>
+    <div class="loading">
+        <div class="flex-center">
+            <mat-spinner color="accent" diameter="50"></mat-spinner>
+        </div>
+        <div style="text-align: center;">
+            {{loadingMessage}}
+        </div>
+    </div>
+</ng-template>

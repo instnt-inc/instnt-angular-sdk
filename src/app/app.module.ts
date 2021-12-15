@@ -17,13 +17,15 @@ import { ReactiveFormsModule } from '@angular/forms';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { OtpVerificationComponent } from './otp-verification/otp-verification.component';
 import { EventHandlerService } from './services/event-handler.service';
+import { DocumentUploadComponent } from './document-upload/document-upload.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomePageComponent,
     SignupComponent,
-    OtpVerificationComponent
+    OtpVerificationComponent,
+    DocumentUploadComponent
   ],
   imports: [
     BrowserModule,
