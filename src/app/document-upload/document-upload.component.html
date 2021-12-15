@@ -3,9 +3,14 @@
         <mat-card-title>Upload Document</mat-card-title>
         <mat-card-subtitle>Please take a photo of your driver's licence</mat-card-subtitle>
         <mat-card-content *ngIf="!isLoading; else loading">
-            <input type="file" capture="camera" accept="image/*" id="cameraInput" name="cameraInput"
-                (change)="onFileSelected($event)">
-            <!-- <button type="button" (click)="onUpload()">Upload File</button> -->
+            <div class="cam">
+                <webcam [width]="450" [trigger]="triggerObservable"></webcam>
+                <div class="flex-center cam-btn">
+                    <button mat-fab color="primary" style="background-color: transparent;">
+                        <mat-icon aria-hidden="false" aria-label="Example home icon">camera</mat-icon>
+                    </button>
+                </div>
+            </div>
         </mat-card-content>
         <hr style="margin-top: 30px;">
         <div class="buttons">

@@ -1,5 +1,6 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Instnt, InstntAngularService } from 'projects/instnt-angular/src/public-api';
 import { firstValueFrom, lastValueFrom, map, Observable, pipe, Subject } from 'rxjs';
 import { EventHandlerService } from '../services/event-handler.service';
@@ -22,7 +23,7 @@ export class OtpVerificationComponent implements OnInit {
   otpVerifyForm: FormGroup;
   otpVerify = new FormControl('', Validators.required);
 
-  constructor(public instntService: InstntAngularService, public handler: EventHandlerService) {
+  constructor(public instntService: InstntAngularService, public handler: EventHandlerService, private router: Router) {
     this.instntService.getInstnt().subscribe((instnt) => this.instnt = instnt);
     this.phoneVerifyForm = new FormGroup({
       phone: this.phone,
@@ -64,9 +65,8 @@ export class OtpVerificationComponent implements OnInit {
     const phone = '+1' + this.phoneVerifyForm.get('phone')?.value;
     this.instnt?.verifyOTP(phone, this.otpVerifyForm.get('otpVerify')?.value);
     firstValueFrom(this.handler.OTPVerified).then((data) => {
-      console.log('OTP verified', data);
       this.isLoading = false
-      console.log('navigate to next component');
+      this.router.navigate(['doc-upload']);
     });
 
   }
