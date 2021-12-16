@@ -40,3 +40,24 @@ export enum EventType {
     OTPVerified = 'otp.verified',
     OTPError = 'otp.error'
 }
+
+export interface InstntImageProcessorProps {
+    documentType: DocumentType;
+    documentSide: DocumentSide;
+    captureMode?: CaptureMode;
+    autoUpload?: boolean;
+    captureFrameworkDebug?: Boolean;
+}
+
+export enum DocumentType {
+    License = 'License',
+}
+
+export enum DocumentSide {
+    Front = 'Front',
+    Back = 'Back'
+}
+
+export enum CaptureMode {
+    Auto = 'Auto'
+}

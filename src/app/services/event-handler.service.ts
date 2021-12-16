@@ -12,6 +12,7 @@ export class EventHandlerService {
   transactionInit: ReplaySubject<Instnt> = new ReplaySubject(1);
   OTPSent: Subject<any> = new Subject();
   OTPVerified: Subject<any> = new Subject();
+  DocumentCaptured: Subject<any> = new Subject();
   constructor() {
     this.eventHandler = (event: InstntEvent) => {
       this.testInstnt = event
@@ -34,17 +35,25 @@ export class EventHandlerService {
           this.OTPSent.error(event.data);
           this.OTPVerified.error(event.data);
           break;
-          default:
-            console.log("unhandled instnt event ", event);
-            this.OTPVerified.complete();
+        case EventType.DocumentCaptured:
+          console.log('event type document.captured triggered', event);
+          this.DocumentCaptured.next(event);
+          break;
+        case EventType.DocumentCaptureCancelled:
+          console.log('event type documentCapture Canceled triggered', event);
+          this.DocumentCaptured.next(event);
+          break;
+        default:
+          console.log("unhandled instnt event ", event);
+          this.OTPVerified.complete();
       }
-      
+
     }
   }
 
   testSubscribe() {
-    setTimeout(() => {
-      this.OTPSent.next(this.testInstnt);
-    }, 2000);
+    // setTimeout(() => {
+    //   this.OTPSent.next(this.testInstnt);
+    // }, 2000);
   }
 }

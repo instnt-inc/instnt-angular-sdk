@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Instnt } from './interfaces/instnt.interface';
+import { Instnt, InstntImageProcessorProps, CaptureMode } from './interfaces/instnt.interface';
 import { Observable, ReplaySubject } from 'rxjs';
 
 @Injectable({
@@ -16,6 +16,28 @@ export class InstntAngularService {
 
   getInstnt(): Observable<Instnt> {
     return this.instnt;
+  }
+
+  instntImageProcessor(docProps: InstntImageProcessorProps) {
+    const documentCapture = (window as any).documentCapture;
+    //console.log('docCapture', documentCapture);
+    if(!(window as any).DocumentSettings) {
+      console.error('Document Capture is Null, please run instnt.initImageProcessor() before running instntImageProcessor(props)');
+      console.error(`If error persist try running instntImageProcessor inside a setTimeout() function i.e.
+      setTimeout(() => {
+        this.intntService.instntImageProcessor(props);
+      }, 4000);`)
+    } else {
+      const prop: any = {
+        documentType: docProps.documentType.toString(),
+        documentSide: docProps.documentSide.toString(),
+        captureMode: docProps.captureMode?.toString() || 'Auto',
+        autoUpload: docProps.autoUpload || true,
+        captureFrameworkDebug: docProps.captureFrameworkDebug || false
+      }
+      console.log('document capture working, props are', prop);
+      documentCapture(prop.documentType, prop.documentSide, prop.captureMode, prop.autoUpload, prop.captureFrameworkDebug);
+    }
   }
 
   

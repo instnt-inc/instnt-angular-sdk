@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { WebcamImage } from 'ngx-webcam';
-import { Instnt, InstntAngularService } from 'projects/instnt-angular/src/public-api';
+import { DocumentSide, DocumentType, Instnt, InstntAngularService, InstntImageProcessorProps } from 'projects/instnt-angular/src/public-api';
 import { Observable, Subject } from 'rxjs';
+import { EventHandlerService } from '../services/event-handler.service';
 
 @Component({
   selector: 'app-document-upload',
@@ -14,37 +15,31 @@ export class DocumentUploadComponent implements OnInit {
   loadingMessage = '';
   instnt?: Instnt;
   private trigger: Subject<void> = new Subject<void>();
+  frontImgUrl: string = '';
 
-  constructor(private intntService: InstntAngularService) { }
+  constructor(private intntService: InstntAngularService, public events: EventHandlerService) { }
 
   ngOnInit(): void {
     this.intntService.getInstnt().subscribe((instnt) => {
-      this.instnt = instnt
+      this.instnt = instnt;
       this.instnt.initImageProcessor();
-      setTimeout(() => {
-        (window as any).documentCapture(
-          'documentType',
-          'documentSide',
-          'Auto',
-          true);
-      }, 2000);
     });
-    
+
+  }
+
+  onStartCamera(side: string) {
+    const imageProps: InstntImageProcessorProps = {
+      documentType: DocumentType.License,
+      documentSide: <DocumentSide>side
+    }
+    this.intntService.instntImageProcessor(imageProps);
+    this.events.DocumentCaptured.subscribe((data) => {
+      console.log('data from eventhandled', data);
+      console.log('url =', data.captureResult?.result)
+      this.frontImgUrl = data.data.captureResult?.result
+    })
   }
 
 
-  public triggerSnapshot(): void {
-    this.trigger.next();
-  }
-
-  public get triggerObservable(): Observable<void> {
-    return this.trigger.asObservable();
-  }
-
-  public handleImage(webcamImage: WebcamImage): void {
-    console.log('Received webcam image');
-    console.log(webcamImage);
-    //this.webcamImage = webcamImage;
-  }
 
 }
