@@ -14,7 +14,7 @@ export class DocumentUploadComponent implements OnInit {
   isLoading = false;
   loadingMessage = '';
   instnt?: Instnt;
-  private trigger: Subject<void> = new Subject<void>();
+  captureTarget = '';
   frontImgUrl: string = '';
 
   constructor(private intntService: InstntAngularService, public events: EventHandlerService) { }
@@ -22,22 +22,34 @@ export class DocumentUploadComponent implements OnInit {
   ngOnInit(): void {
     this.intntService.getInstnt().subscribe((instnt) => {
       this.instnt = instnt;
-      this.instnt.initImageProcessor();
     });
+    this.events.DocumentCaptured.subscribe((data) => {
+      console.log('data from eventhandled', data);
+      console.log('url =', data.data.captureResult?.result)
+      this.captureTarget = '';
+      if(data.captureResult?.result) {
+        this.frontImgUrl = data.data.captureResult?.result
+      }
+    })
+
+  }
+
+  startCamera(target: string) {
+    this.captureTarget = target;
 
   }
 
   onStartCamera(side: string) {
-    const imageProps: InstntImageProcessorProps = {
-      documentType: DocumentType.License,
-      documentSide: <DocumentSide>side
-    }
-    this.intntService.instntImageProcessor(imageProps);
-    this.events.DocumentCaptured.subscribe((data) => {
-      console.log('data from eventhandled', data);
-      console.log('url =', data.captureResult?.result)
-      this.frontImgUrl = data.data.captureResult?.result
-    })
+    // const imageProps: InstntImageProcessorProps = {
+    //   documentType: DocumentType.License,
+    //   documentSide: <DocumentSide>side
+    // }
+    // this.intntService.instntImageProcessor(imageProps);
+    // this.events.DocumentCaptured.subscribe((data) => {
+    //   console.log('data from eventhandled', data);
+    //   console.log('url =', data.captureResult?.result)
+    //   this.frontImgUrl = data.data.captureResult?.result
+    // })
   }
 
 

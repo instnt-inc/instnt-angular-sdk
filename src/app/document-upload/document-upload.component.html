@@ -6,9 +6,18 @@
             <div>
                 <p>1) Please take a picture of the front of your driver's license:</p>
             </div>
-            <img width="350px" src="{{ frontImgUrl }}" alt="">
+            <div class="img-preview">
+                <div style="text-align: end;">
+                    <button mat-raised-button color="primary" (click)="startCamera('Front')">Retake Image</button>
+                </div>
+                <img width="350px" src="{{ frontImgUrl }}" alt="">
+                <!-- <img width="350px" src="https://thispersondoesnotexist.com/image" alt=""> -->
+            </div>
+            <div *ngIf="captureTarget">
+                <instnt-image-processor [documentType]="'License'" [documentSide]="'Front'"></instnt-image-processor>
+            </div>
             <div class="flex-center">
-                <button mat-raised-button color="primary" (click)="onStartCamera('Front')">Start Camera</button>
+                <button mat-raised-button color="primary" (click)="startCamera('Front')">Start Camera</button>
             </div>
         </mat-card-content>
         <hr style="margin-top: 30px;">
