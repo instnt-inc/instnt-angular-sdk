@@ -48,9 +48,10 @@ mat-card {
     font-size: 9pt;
 }
 
-.buttons {
-    display: flex;
-    justify-content: space-between;
+.footer {
+    position: absolute;
+    bottom: 0px;
 }
+
 
 

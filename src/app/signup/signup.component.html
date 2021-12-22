@@ -1,4 +1,4 @@
-<div class="flex-center">
+<div class="flex-center full-height">
   <mat-card>
     <mat-card-title>Enter Your Contact Information</mat-card-title>
     <mat-card-subtitle>All fields are required</mat-card-subtitle>
@@ -51,10 +51,12 @@
         </div>
       </form>
     </mat-card-content>
-    <div class="buttons">
-      <button [routerLink]="['/']" routerLinkActive="router-link-active"  mat-raised-button color="primary">Back Home</button>
+    <div class="flex-between">
+      <button [routerLink]="['/']" routerLinkActive="router-link-active" mat-raised-button color="primary">Back
+        Home</button>
       <span style="margin-top: 8px;">1/4</span>
-      <button [routerLink]="['/otp-verify']" routerLinkActive="router-link-active"  mat-raised-button color="primary" (click)="onSubmitInfo()" [disabled]="!signUpForm.valid">Next Step</button>
+      <button [routerLink]="['/otp-verify']" routerLinkActive="router-link-active" mat-raised-button color="primary"
+        (click)="onSubmitInfo()" [disabled]="!signUpForm.valid">Next Step</button>
     </div>
   </mat-card>
 </div>

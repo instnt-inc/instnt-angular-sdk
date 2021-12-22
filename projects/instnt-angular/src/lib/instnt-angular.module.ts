@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { InstntAngularComponent } from './instnt-angular.component';
 import { HttpClientModule } from '@angular/common/http';
 import { InstntSignupProviderComponent } from './instnt-signup-provider/instnt-signup-provider.component';
-import { InstntImageProcessorComponent } from './instnt-document-processor/instnt-document-processor.component';
+import { InstntDocumentProcessorComponent } from './instnt-document-processor/instnt-document-processor.component';
 import { InstntSelfieProcessorComponent } from './instnt-selfie-processor/instnt-selfie-processor.component';
 
 
@@ -11,7 +11,7 @@ import { InstntSelfieProcessorComponent } from './instnt-selfie-processor/instnt
   declarations: [
     InstntAngularComponent,
     InstntSignupProviderComponent,
-    InstntImageProcessorComponent,
+    InstntDocumentProcessorComponent,
     InstntSelfieProcessorComponent
   ],
   imports: [
@@ -19,7 +19,8 @@ import { InstntSelfieProcessorComponent } from './instnt-selfie-processor/instnt
   ],
   exports: [
     InstntSignupProviderComponent,
-    InstntImageProcessorComponent,
+    InstntDocumentProcessorComponent,
+    InstntSelfieProcessorComponent,
   ]
 })
 export class InstntAngularModule { }

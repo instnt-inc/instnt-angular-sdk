@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'instnt-image-processor',
+  selector: 'instnt-document-processor',
   template: `
   <div>
     <img src="" alt="">
@@ -9,7 +9,7 @@ import { Component, Input, OnInit } from '@angular/core';
   `,
   styleUrls: []
 })
-export class InstntImageProcessorComponent implements OnInit {
+export class InstntDocumentProcessorComponent implements OnInit {
 
   @Input() documentType: string = '';
   @Input() documentSide: string = '';

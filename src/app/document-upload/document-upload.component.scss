@@ -1,7 +1,13 @@
 
+.page-content {
+    max-width: 780px;
+    margin: auto;
+    margin-top: 10px;
+    h2 {
+        margin-left: 6px;
+    }
+}
 
-.cam-btn {
-    position: relative;
-    top: -80px;
-    margin-bottom: -40px;
+.steps {
+    margin-top: 8px;
 }

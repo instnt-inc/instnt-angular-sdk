@@ -18,7 +18,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { OtpVerificationComponent } from './otp-verification/otp-verification.component';
 import { EventHandlerService } from './services/event-handler.service';
 import { DocumentUploadComponent } from './document-upload/document-upload.component';
-import {WebcamModule} from 'ngx-webcam';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 @NgModule({
   declarations: [
@@ -41,7 +41,7 @@ import {WebcamModule} from 'ngx-webcam';
     MatCardModule,
     MatInputModule,
     MatProgressSpinnerModule,
-    WebcamModule
+    MatExpansionModule
   ],
   providers: [ EventHandlerService, InstntAngularService ],
   bootstrap: [AppComponent]

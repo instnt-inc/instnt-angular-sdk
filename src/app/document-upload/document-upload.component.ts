@@ -15,7 +15,9 @@ export class DocumentUploadComponent implements OnInit {
   loadingMessage = '';
   instnt?: Instnt;
   captureTarget = '';
-  frontImgUrl: string = '';
+  frontImgUrl: string = 'https://thispersondoesnotexist.com/image';
+  backImgUrl: string = '';
+  selfieImgUrl: string = '';
 
   constructor(private intntService: InstntAngularService, public events: EventHandlerService) { }
 
@@ -23,20 +25,26 @@ export class DocumentUploadComponent implements OnInit {
     this.intntService.getInstnt().subscribe((instnt) => {
       this.instnt = instnt;
     });
-    this.events.DocumentCaptured.subscribe((data) => {
-      console.log('data from eventhandled', data);
-      console.log('url =', data.data.captureResult?.result)
-      this.captureTarget = '';
-      if(data.captureResult?.result) {
-        this.frontImgUrl = data.data.captureResult?.result
+    this.events.DocumentCaptured.subscribe((res) => {
+      console.log('data from eventhandled', res);
+      console.log('url =', res.data.captureResult?.result)
+      if (res.data.captureResult?.result) {
+        if (this.captureTarget === 'Front') {
+          this.frontImgUrl = res.data.captureResult?.result;
+        } else if (this.captureTarget === 'Back') {
+          this.backImgUrl = res.data.captureResult?.result;
+        } else if (this.captureTarget === 'Selfie') {
+          console.log('If Selfie true');
+          this.selfieImgUrl = res.data.captureResult?.result;
+        }
       }
+      this.captureTarget = '';
     })
 
   }
 
   startCamera(target: string) {
     this.captureTarget = target;
-
   }
 
   onStartCamera(side: string) {

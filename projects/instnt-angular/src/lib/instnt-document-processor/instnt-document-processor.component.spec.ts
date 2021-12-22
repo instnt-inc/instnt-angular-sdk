@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { InstntImageProcessorComponent } from './instnt-document-processor.component';
+import { InstntDocumentProcessorComponent } from './instnt-document-processor.component';
 
 describe('InstntImageProcessorComponent', () => {
-  let component: InstntImageProcessorComponent;
-  let fixture: ComponentFixture<InstntImageProcessorComponent>;
+  let component: InstntDocumentProcessorComponent;
+  let fixture: ComponentFixture<InstntDocumentProcessorComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ InstntImageProcessorComponent ]
+      declarations: [ InstntDocumentProcessorComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(InstntImageProcessorComponent);
+    fixture = TestBed.createComponent(InstntDocumentProcessorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

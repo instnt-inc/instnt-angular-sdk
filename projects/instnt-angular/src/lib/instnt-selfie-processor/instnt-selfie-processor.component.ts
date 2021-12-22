@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'instnt-selfie-processor',
@@ -11,17 +11,17 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class InstntSelfieProcessorComponent implements OnInit {
 
-  @Input() documentType: string = 'License';
-  @Input() documentSide: string = '';
-  @Input() captureMode?: string = 'Auto';
-  @Input() autoUpload?: boolean = true;
-  @Input() captureFrameworkDebug?: boolean = false;
+  documentType: string = 'License';
+  documentSide: string = '';
+  captureMode?: string = 'Auto';
+  autoUpload?: boolean = true;
+  captureFrameworkDebug?: boolean = false;
 
   constructor() { }
 
   ngOnInit(): void {
     console.log('Image Proccessor onInit()');
-    const documentCapture = (window as any).documentCapture;
+    const selfieCapture = (window as any).selfieCapture;
     //console.log('docCapture', documentCapture);
     if (!(window as any).DocumentSettings) {
       console.error('Document Capture is Null, please run instnt.initImageProcessor() before running instntImageProcessor(props)');
@@ -31,7 +31,7 @@ export class InstntSelfieProcessorComponent implements OnInit {
       }, 4000);`)
     } else {
       console.log('Document Settings not Null');
-      documentCapture(this.documentType, this.documentSide, this.captureMode, this.autoUpload, this.captureFrameworkDebug);
+      selfieCapture(this.documentType, this.documentSide, this.captureMode, this.autoUpload, this.captureFrameworkDebug);
     }
   }
 
