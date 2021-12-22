@@ -16,6 +16,5 @@ export class InstntAngularComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log('Form Id =', this.formId);
   }
 }

@@ -12,12 +12,10 @@
         <mat-expansion-panel [expanded]="true">
             <mat-expansion-panel-header>
                 <mat-panel-title>
-                    Front
+                    <span><b>Front Image</b></span>
                 </mat-panel-title>
-                <mat-panel-description>
-                    Please take a picture of the front of your driver's license:
-                </mat-panel-description>
             </mat-expansion-panel-header>
+            <p>Please take a picture of the front of your driver's license:</p>
             <div class="img-preview">
                 <div class="flex-center">
                     <img width="340px" src="{{ frontImgUrl }}" alt="">
@@ -36,24 +34,39 @@
         <mat-expansion-panel>
             <mat-expansion-panel-header>
                 <mat-panel-title>
-                    Back
+                    <span><b>Back Image</b></span>
                 </mat-panel-title>
-                <mat-panel-description>
-                    Please take a picture of the back of your driver's license:
-                </mat-panel-description>
             </mat-expansion-panel-header>
+            <p>Please take a picture of the back of your driver's license:</p>
             <div class="img-preview">
-                <div *ngIf="backImgUrl" style="text-align: end;">
-                    <button mat-raised-button color="primary" (click)="startCamera('Back')">Retake Image</button>
-                </div>
                 <img width="350px" src="{{ backImgUrl }}" alt="">
             </div>
             <mat-action-row>
                 <div *ngIf="!backImgUrl" class="flex-center">
                     <button mat-raised-button color="primary" (click)="startCamera('Back')">Start Camera</button>
                 </div>
-                <div *ngIf="backImgUrl">
-                    <button mat-raised-button color="primary" (click)="startCamera('Front')">Retake Image</button>
+                <div *ngIf="backImgUrl" style="text-align: end;">
+                    <button mat-raised-button color="primary" (click)="startCamera('Back')">Retake Image</button>
+                </div>
+            </mat-action-row>
+        </mat-expansion-panel>
+        <!-- Selfie Panel -->
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <span><b>Selfie Image</b></span>
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <p>Please take a picture of yourself</p>
+            <div class="img-preview">
+                <img width="350px" src="{{ selfieImgUrl }}" alt="">
+            </div>
+            <mat-action-row>
+                <div *ngIf="!selfieImgUrl" class="flex-center">
+                    <button mat-raised-button color="primary" (click)="startCamera('Selfie')">Start Camera</button>
+                </div>
+                <div *ngIf="selfieImgUrl" style="text-align: end;">
+                    <button mat-raised-button color="primary" (click)="startCamera('')">Retake Image</button>
                 </div>
             </mat-action-row>
         </mat-expansion-panel>
@@ -63,64 +76,10 @@
             <button [routerLink]="['/sign-up']" routerLinkActive="router-link-active" mat-raised-button
                 color="primary">Back</button>
             <span style="margin-top: 8px;">3/4</span>
-            <button [routerLink]="['/otp-verify']" routerLinkActive="router-link-active" mat-raised-button
-                color="primary" [disabled]="!(frontImgUrl && backImgUrl && selfieImgUrl)">Next Step</button>
+            <button routerLinkActive="router-link-active" mat-raised-button color="primary"
+                [disabled]="!(frontImgUrl && backImgUrl && selfieImgUrl)" (click)="onGoToNextStep()">Next Step</button>
         </div>
     </mat-card>
-
-    <!-- MAT CARD STYLE  -->
-    <!-- <mat-card>
-        <mat-card-title>Upload Document and Selfie</mat-card-title>
-        <mat-card-subtitle>Please take a photo of your driver's licence</mat-card-subtitle>
-        <mat-card-content *ngIf="!isLoading; else loading">
-            <div class="steps">
-                <h3>1) Please take a picture of the front of your driver's license:</h3>
-                <div class="img-preview">
-                    <div *ngIf="frontImgUrl" style="text-align: end;">
-                        <button mat-raised-button color="primary" (click)="startCamera('Front')">Retake Image</button>
-                    </div>
-                    <div class="flex-center">
-                        <img width="340px" src="{{ frontImgUrl }}" alt="">
-                    </div>
-                </div>
-                <div *ngIf="!frontImgUrl" class="flex-center">
-                    <button mat-raised-button color="primary" (click)="startCamera('Front')">Start Camera</button>
-                </div>
-            </div>
-            <div class="steps" *ngIf="frontImgUrl">
-                <h3>2) Please take a picture of the back of your driver's license:</h3>
-                <div class="img-preview">
-                    <div *ngIf="backImgUrl" style="text-align: end;">
-                        <button mat-raised-button color="primary" (click)="startCamera('Back')">Retake Image</button>
-                    </div>
-                    <img width="350px" src="{{ backImgUrl }}" alt="">
-                </div>
-                <div *ngIf="!backImgUrl" class="flex-center">
-                    <button mat-raised-button color="primary" (click)="startCamera('Back')">Start Camera</button>
-                </div>
-            </div>
-            <div class="steps" *ngIf="backImgUrl">
-                <h3>3) Please take a picture of yourself</h3>
-                <div class="img-preview">
-                    <div *ngIf="selfieImgUrl" style="text-align: end;">
-                        <button mat-raised-button color="primary" (click)="startCamera('')">Retake Image</button>
-                    </div>
-                    <img width="350px" src="{{ selfieImgUrl }}" alt="">
-                </div>
-                <div *ngIf="!selfieImgUrl" class="flex-center">
-                    <button mat-raised-button color="primary" (click)="startCamera('Selfie')">Start Camera</button>
-                </div>
-            </div>
-        </mat-card-content>
-        <hr style="margin-top: 30px;">
-        <div class="buttons">
-            <button [routerLink]="['/sign-up']" routerLinkActive="router-link-active" mat-raised-button
-                color="primary">Back</button>
-            <span style="margin-top: 8px;">3/4</span>
-            <button [routerLink]="['/otp-verify']" routerLinkActive="router-link-active" mat-raised-button
-                color="primary" [disabled]="!(frontImgUrl && backImgUrl && selfieImgUrl)">Next Step</button>
-        </div>
-    </mat-card> -->
 </div>
 <ng-template #loading>
     <div class="loading">

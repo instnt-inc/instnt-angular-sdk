@@ -43,7 +43,6 @@ export class OtpVerificationComponent implements OnInit {
     this.instnt?.sendOTP(phone);
     const promise = firstValueFrom(this.handler.OTPSent);
     promise.then((data) => {
-      console.log('OTP Sent inside promise.then', data);
       this.isLoading = false;
       this.isOtpReceived = true;
     }).catch((err) => {

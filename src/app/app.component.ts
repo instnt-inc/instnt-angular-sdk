@@ -18,7 +18,6 @@ export class AppComponent {
    }
   ngOnInit(): void {
     this.instntService.getInstnt().subscribe((instnt) => {
-      console.log('success', instnt);
     })
   }
 }

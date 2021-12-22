@@ -20,7 +20,6 @@ export class InstntDocumentProcessorComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log('Image Proccessor onInit()');
     const documentCapture = (window as any).documentCapture;
     //console.log('docCapture', documentCapture);
     if (!(window as any).DocumentSettings) {
@@ -30,7 +29,6 @@ export class InstntDocumentProcessorComponent implements OnInit {
         this.intntService.instntImageProcessor(props);
       }, 4000);`)
     } else {
-      console.log('Document Settings not Null');
       documentCapture(this.documentType, this.documentSide, this.captureMode, this.autoUpload, this.captureFrameworkDebug);
     }
   }

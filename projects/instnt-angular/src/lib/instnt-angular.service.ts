@@ -20,7 +20,6 @@ export class InstntAngularService {
 
   instntImageProcessor(docProps: InstntImageProcessorProps) {
     const documentCapture = (window as any).documentCapture;
-    //console.log('docCapture', documentCapture);
     if(!(window as any).DocumentSettings) {
       console.error('Document Capture is Null, please run instnt.initImageProcessor() before running instntImageProcessor(props)');
       console.error(`If error persist try running instntImageProcessor inside a setTimeout() function i.e.
@@ -35,7 +34,6 @@ export class InstntAngularService {
         autoUpload: docProps.autoUpload || true,
         captureFrameworkDebug: docProps.captureFrameworkDebug || false
       }
-      console.log('document capture working, props are', prop);
       documentCapture(prop.documentType, prop.documentSide, prop.captureMode, prop.autoUpload, prop.captureFrameworkDebug);
     }
   }

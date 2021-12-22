@@ -25,7 +25,7 @@ export class InstntSignupProviderComponent implements OnInit, AfterViewInit {
   constructor(private http: HttpClient, private service: InstntAngularService) { }
 
   ngOnInit(): void {
-    console.log('init works', this.formId, this.serviceURL, this.onEvent)
+    
   }
 
   ngAfterViewInit() {

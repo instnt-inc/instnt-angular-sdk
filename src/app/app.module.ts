@@ -19,6 +19,7 @@ import { OtpVerificationComponent } from './otp-verification/otp-verification.co
 import { EventHandlerService } from './services/event-handler.service';
 import { DocumentUploadComponent } from './document-upload/document-upload.component';
 import {MatExpansionModule} from '@angular/material/expansion';
+import { ReviewComponent } from './review/review.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
     HomePageComponent,
     SignupComponent,
     OtpVerificationComponent,
-    DocumentUploadComponent
+    DocumentUploadComponent,
+    ReviewComponent
   ],
   imports: [
     BrowserModule,
