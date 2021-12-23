@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Instnt, InstntAngularService } from 'projects/instnt-angular/src/public-api';
-import { EventHandlerService } from '../services/event-handler.service';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-signup',
@@ -16,7 +16,7 @@ export class SignupComponent implements OnInit {
   lastName = new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z- ]*$/), Validators.maxLength(50)]);
   email = new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z0-9+.]+@([\w-]+\.)+[\w-]{2,}$/), Validators.maxLength(100)]);
 
-  constructor(private instntService: InstntAngularService, private handler: EventHandlerService) {
+  constructor(private instntService: InstntAngularService, private dataService: DataService) {
     this.instntService.getInstnt().subscribe((instnt) => this.instnt = instnt);
     this.signUpForm = new FormGroup({
       firstName: this.firstName,
@@ -35,6 +35,7 @@ export class SignupComponent implements OnInit {
       surName: this.signUpForm.get('lastName')?.value,
       email: this.signUpForm.get('email')?.value,
     }
+    this.dataService.setUserData(data.firstName, data.surName, data.email, '');
   }
 
 }

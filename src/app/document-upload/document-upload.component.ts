@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { WebcamImage } from 'ngx-webcam';
 import { DocumentSide, DocumentType, Instnt, InstntAngularService, InstntImageProcessorProps } from 'projects/instnt-angular/src/public-api';
 import { Observable, Subject } from 'rxjs';
+import { DataService } from '../services/data.service';
 import { EventHandlerService } from '../services/event-handler.service';
 
 @Component({
@@ -21,7 +22,11 @@ export class DocumentUploadComponent implements OnInit {
   backImgUrl: string = '';
   selfieImgUrl: string = '';
 
-  constructor(private intntService: InstntAngularService, public events: EventHandlerService, private router: Router) { }
+  constructor(
+    private intntService: InstntAngularService, 
+    public events: EventHandlerService, 
+    private router: Router,
+    private dataService: DataService) { }
 
   ngOnInit(): void {
     this.intntService.getInstnt().subscribe((instnt) => {
@@ -47,6 +52,9 @@ export class DocumentUploadComponent implements OnInit {
   }
 
   onGoToNextStep() {
+    this.dataService.docFrontUrl = this.frontImgUrl;
+    this.dataService.docBackUrl = this.backImgUrl;
+    this.dataService.selfieUrl = this.selfieImgUrl;
     this.instnt?.verifyDocuments('License');
     this.router.navigate(['review']);
   }
