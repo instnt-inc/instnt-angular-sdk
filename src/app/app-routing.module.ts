@@ -3,8 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { DocumentUploadComponent } from './document-upload/document-upload.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { OtpVerificationComponent } from './otp-verification/otp-verification.component';
-import { ReviewComponent } from './review/review.component';
 import { SignupComponent } from './signup/signup.component';
+import { SubmitFormComponent } from './submit-form/submit-form.component';
 
 const routes: Routes = [
   {
@@ -24,8 +24,8 @@ const routes: Routes = [
     component: DocumentUploadComponent
   },
   {
-    path: 'review',
-    component: ReviewComponent
+    path: 'submit-form',
+    component: SubmitFormComponent
   }
 ];
 

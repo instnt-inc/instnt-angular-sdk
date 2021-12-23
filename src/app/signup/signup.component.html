@@ -55,7 +55,7 @@
       <button [routerLink]="['/']" routerLinkActive="router-link-active" mat-raised-button color="primary">Back
         Home</button>
       <span style="margin-top: 8px;">1/4</span>
-      <button [routerLink]="['/otp-verify']" routerLinkActive="router-link-active" mat-raised-button color="primary"
+      <button routerLinkActive="router-link-active" mat-raised-button color="primary"
         (click)="onSubmitInfo()" [disabled]="!signUpForm.valid">Next Step</button>
     </div>
   </mat-card>

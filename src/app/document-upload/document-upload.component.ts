@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { WebcamImage } from 'ngx-webcam';
-import { DocumentSide, DocumentType, Instnt, InstntAngularService, InstntImageProcessorProps } from 'projects/instnt-angular/src/public-api';
-import { Observable, Subject } from 'rxjs';
+import { Instnt, InstntAngularService,  } from 'projects/instnt-angular/src/public-api';
 import { DataService } from '../services/data.service';
 import { EventHandlerService } from '../services/event-handler.service';
 
@@ -56,7 +55,7 @@ export class DocumentUploadComponent implements OnInit {
     this.dataService.docBackUrl = this.backImgUrl;
     this.dataService.selfieUrl = this.selfieImgUrl;
     this.instnt?.verifyDocuments('License');
-    this.router.navigate(['review']);
+    this.router.navigate(['submit-form']);
   }
 
 

@@ -13,6 +13,7 @@ export class EventHandlerService {
   OTPSent: Subject<any> = new Subject();
   OTPVerified: Subject<any> = new Subject();
   DocumentCaptured: Subject<any> = new Subject();
+  SubmitResult: Subject<any> = new Subject();
   constructor() {
     this.eventHandler = (event: InstntEvent) => {
       this.testInstnt = event
@@ -42,6 +43,14 @@ export class EventHandlerService {
         case EventType.DocumentCaptureCancelled:
           console.log('event type documentCapture Canceled triggered', event);
           this.DocumentCaptured.next(event);
+          break;
+        case EventType.TransactionProcessed:
+          console.log('event type Transaction Proccessed', event);
+          this.SubmitResult.next(event);
+          break;
+        case EventType.TransactionError:
+          console.log('event type Transaction Error', event);
+          this.SubmitResult.error(event);
           break;
         default:
           console.log("unhandled instnt event ", event);

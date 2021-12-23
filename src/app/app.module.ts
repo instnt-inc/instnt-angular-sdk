@@ -19,7 +19,9 @@ import { OtpVerificationComponent } from './otp-verification/otp-verification.co
 import { EventHandlerService } from './services/event-handler.service';
 import { DocumentUploadComponent } from './document-upload/document-upload.component';
 import {MatExpansionModule} from '@angular/material/expansion';
-import { ReviewComponent } from './review/review.component';
+import { SubmitFormComponent } from './submit-form/submit-form.component';
+import {MatGridListModule} from '@angular/material/grid-list';
+import { DataService } from './services/data.service';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,7 @@ import { ReviewComponent } from './review/review.component';
     SignupComponent,
     OtpVerificationComponent,
     DocumentUploadComponent,
-    ReviewComponent
+    SubmitFormComponent
   ],
   imports: [
     BrowserModule,
@@ -43,9 +45,10 @@ import { ReviewComponent } from './review/review.component';
     MatCardModule,
     MatInputModule,
     MatProgressSpinnerModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatGridListModule
   ],
-  providers: [ EventHandlerService, InstntAngularService ],
+  providers: [ EventHandlerService, InstntAngularService, DataService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

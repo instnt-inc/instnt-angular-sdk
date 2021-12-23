@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 export interface UserData {
   firstName: string,
   surName: string,
-  Email: string,
+  email: string,
   mobileNumber: string,
 }
 
@@ -21,7 +21,7 @@ export class DataService {
     this.userData = {
       firstName: '',
       surName: '',
-      Email: '',
+      email: '',
       mobileNumber: '',
     }
   }
@@ -30,7 +30,7 @@ export class DataService {
     this.userData = {
       firstName,
       surName: lastName,
-      Email: email,
+      email,
       mobileNumber
     }
   }

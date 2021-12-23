@@ -1,0 +1,68 @@
+<div class="flex-center">
+    <mat-card>
+        <mat-card-title>Review and Submit your Form</mat-card-title>
+        <mat-card-subtitle></mat-card-subtitle>
+        <mat-card-content>
+            <mat-list>
+                <mat-list-item><b>First Name:</b>{{ data.userData.firstName }}</mat-list-item>
+                <mat-list-item><b>Last Name:</b>{{ data.userData.surName }}</mat-list-item>
+                <mat-list-item><b>Email:</b>{{ data.userData.email }}</mat-list-item>
+                <mat-list-item><b>Mobile Number:</b>{{ data.userData.mobileNumber }}</mat-list-item>
+            </mat-list>
+            <mat-grid-list cols="2" rowHeight="2:1">
+                <mat-list-item><b>Images:</b></mat-list-item>
+                <mat-grid-tile [rowspan]="2">
+                    <img *ngIf="data.selfieUrl" src="data.selfieUrl" alt="">
+                </mat-grid-tile>
+                <mat-grid-tile>
+                    <img *ngIf="data.docFrontUrl" src="data.docFrontUrl" alt="">
+                </mat-grid-tile>
+                <mat-grid-tile>
+                    <img *ngIf="data.docBackUrl" src="data.docBackUrl" alt="">
+                </mat-grid-tile>
+            </mat-grid-list>
+            <div *ngIf="isLoading" class="loading">
+                <div class="flex-center">
+                    <mat-spinner color="accent" diameter="50"></mat-spinner>
+                </div>
+                <div style="text-align: center;">
+                    <span>Submitting your Application <br>Please wait!</span>
+                </div>
+            </div>
+            <div *ngIf="response">
+                <div class="reject" *ngIf="response.decision === 'REJECT'">
+                    <p>
+                        <mat-icon aria-hidden="false" aria-label="Example home icon"
+                            style="position: relative; top: 6px">
+                            highlight_off</mat-icon> Unfortunately your application has been rejected.
+                    </p>
+                </div>
+                <div class="accept" *ngIf="response.decision === 'ACCEPT'">
+                    <p>
+                        <mat-icon aria-hidden="false" aria-label="Example home icon"
+                            style="position: relative; top: 6px">
+                            done_outline</mat-icon> Your Application has been Approved!
+                    </p>
+                </div>
+                <div class="review" *ngIf="response.decision === 'REVIEW'">
+                    <p>
+                        <mat-icon aria-hidden="false" aria-label="Example home icon"
+                            style="position: relative; top: 6px">
+                            done_outline</mat-icon> Your Application has being Reviewed.
+                    </p>
+                </div>
+                <p>Please check your Instnt Dashboard for <br>more details regarding this transaction</p>
+            </div>
+        </mat-card-content>
+        <mat-card-actions>
+            <div *ngIf="!isSubmited" class="flex-between">
+                <button [routerLink]="['/doc-upload']" mat-raised-button color="primary">Back</button>
+                <span style="margin-top: 8px;">4/4</span>
+                <button mat-raised-button color="primary" (click)="submitApplication()">Submit</button>
+            </div>
+            <div *ngIf="isSubmited">
+                <button [routerLink]="['/']" routerLinkActive="router-link-active"  mat-raised-button color="primary">Star Over</button>
+            </div>
+        </mat-card-actions>
+    </mat-card>
+</div>
