@@ -11,8 +11,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InstntSelfieProcessorComponent implements OnInit {
 
-  documentType: string = 'License';
-  documentSide: string = '';
+  // documentType: string = 'License';
+  // documentSide: string = '';
   captureMode?: string = 'Auto';
   autoUpload?: boolean = true;
   captureFrameworkDebug?: boolean = false;
@@ -28,7 +28,7 @@ export class InstntSelfieProcessorComponent implements OnInit {
         this.intntService.instntImageProcessor(props);
       }, 4000);`)
     } else {
-      selfieCapture(this.documentType, this.documentSide, this.captureMode, this.autoUpload, this.captureFrameworkDebug);
+      selfieCapture(this.captureMode, this.autoUpload, this.captureFrameworkDebug);
     }
   }
 

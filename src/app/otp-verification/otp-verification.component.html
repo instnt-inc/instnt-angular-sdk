@@ -1,10 +1,15 @@
 <div class="flex-center">
     <mat-card>
-        <mat-card-title>Verify Phone Number With OTP</mat-card-title>
-        <mat-card-subtitle>Please enter a phone number to send a one time password to</mat-card-subtitle>
+        <mat-card-title *ngIf="instnt?.otpVerification">Verify Phone Number With OTP</mat-card-title>
+        <mat-card-subtitle *ngIf="instnt?.otpVerification">Please enter a phone number to send a one time password to
+        </mat-card-subtitle>
+        <mat-card-title *ngIf="!instnt?.otpVerification">OTP Verification is turned off</mat-card-title>
+        <mat-card-subtitle *ngIf="!instnt?.otpVerification">To send a OTP, please enable OTP Verification in your workflow,
+            otherswise simply enter a phone number bellow</mat-card-subtitle>
         <mat-card-content *ngIf="!isLoading; else loading">
             <div *ngIf="errorMessage" class="error-box">
-                <mat-icon class="cursor" aria-hidden="false" aria-label="Example home icon" (click)="errorMessage = ''">close</mat-icon>
+                <mat-icon class="cursor" aria-hidden="false" aria-label="Example home icon" (click)="errorMessage = ''">
+                    close</mat-icon>
                 {{ errorMessage }}
             </div>
             <form [formGroup]="phoneVerifyForm" action="submit">
@@ -28,7 +33,8 @@
                 </div>
             </form>
             <div style="text-align: end;">
-                <button mat-raised-button color="primary" [disabled]="!phoneVerifyForm.valid" (click)="onSendOTP()">
+                <button *ngIf="instnt?.otpVerification" mat-raised-button color="primary"
+                    [disabled]="!phoneVerifyForm.valid" (click)="onSendOTP()">
                     Send Code</button>
             </div>
             <div style="margin-top: 20px;" *ngIf="isOtpReceived">
@@ -52,9 +58,13 @@
             <button [routerLink]="['/sign-up']" routerLinkActive="router-link-active" mat-raised-button
                 color="primary">Back</button>
             <span style="margin-top: 8px;">2/4</span>
-            <button [routerLink]="['/otp-verify']" routerLinkActive="router-link-active" mat-raised-button
+            <button *ngIf="instnt?.otpVerification" routerLinkActive="router-link-active" mat-raised-button
                 color="primary" [disabled]="!otpVerifyForm.valid || !phoneVerifyForm.valid"
                 (click)="onSubmitOTP()">Verify OTP</button>
+            <button *ngIf="!instnt?.otpVerification" [routerLink]="['/doc-upload']"
+                routerLinkActive="router-link-active" mat-raised-button color="primary"
+                [disabled]="!phoneVerifyForm.valid" (click)="onSubmitOTP()">
+                Next Step</button>
         </div>
     </mat-card>
 </div>

@@ -54,8 +54,7 @@
     <div class="flex-between">
       <button [routerLink]="['/']" routerLinkActive="router-link-active" mat-raised-button color="primary">Back
         Home</button>
-        <span *ngIf="instnt?.otpVerification" style="margin-top: 8px;">1/4</span>
-        <span *ngIf="!instnt?.otpVerification" style="margin-top: 8px;">1/3</span>
+        <span style="margin-top: 8px;">1/4</span>
       <button routerLinkActive="router-link-active" mat-raised-button color="primary"
         (click)="onSubmitInfo()" [disabled]="!signUpForm.valid">Next Step</button>
     </div>

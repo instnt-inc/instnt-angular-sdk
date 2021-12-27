@@ -75,8 +75,7 @@
         <div class="flex-between">
             <button [routerLink]="['/sign-up']" routerLinkActive="router-link-active" mat-raised-button
                 color="primary">Back</button>
-            <span *ngIf="instnt?.otpVerification" style="margin-top: 8px;">3/4</span>
-            <span *ngIf="!instnt?.otpVerification" style="margin-top: 8px;">2/3</span>
+            <span style="margin-top: 8px;">3/4</span>
             <button routerLinkActive="router-link-active" mat-raised-button color="primary"
                 [disabled]="!(frontImgUrl && backImgUrl && selfieImgUrl)" (click)="onGoToNextStep()">Next Step</button>
         </div>

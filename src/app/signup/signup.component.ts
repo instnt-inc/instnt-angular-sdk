@@ -45,12 +45,8 @@ export class SignupComponent implements OnInit {
       email: this.signUpForm.get('email')?.value,
       mobileNumber: '+18454213433',
     }
+    this.router.navigate(['otp-verify'])
     console.log('instnt', this.instnt);
-    if(this.instnt?.otpVerification) {
-      this.router.navigate(['otp-verify'])
-    } else {
-      this.router.navigate(['doc-upload'])
-    }
   }
 
 }

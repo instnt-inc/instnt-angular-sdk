@@ -25,8 +25,8 @@ export class OtpVerificationComponent implements OnInit {
   otpVerify = new FormControl('', Validators.required);
 
   constructor(
-    public instntService: InstntAngularService, 
-    public handler: EventHandlerService, 
+    public instntService: InstntAngularService,
+    public handler: EventHandlerService,
     private router: Router,
     private dataService: DataService) {
     this.instntService.getInstnt().subscribe((instnt) => this.instnt = instnt);
@@ -67,12 +67,17 @@ export class OtpVerificationComponent implements OnInit {
     this.loadingMessage = 'Verifying Code, Please Wait';
     this.isLoading = true
     const phone = '+1' + this.phoneVerifyForm.get('phone')?.value;
-    this.instnt?.verifyOTP(phone, this.otpVerifyForm.get('otpVerify')?.value);
-    firstValueFrom(this.handler.OTPVerified).then((data) => {
-      this.dataService.setMobileNumber(phone);
+    this.dataService.setMobileNumber(phone);
+    if (this.instnt?.otpVerification) {
+      this.instnt?.verifyOTP(phone, this.otpVerifyForm.get('otpVerify')?.value);
+      firstValueFrom(this.handler.OTPVerified).then((data) => {
+        this.isLoading = false,
+        this.router.navigate(['doc-upload']);
+      });
+    } else {
       this.isLoading = false,
       this.router.navigate(['doc-upload']);
-    });
+    }
 
   }
 
