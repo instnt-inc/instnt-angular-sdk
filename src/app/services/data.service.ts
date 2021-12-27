@@ -4,7 +4,7 @@ export interface UserData {
   firstName: string,
   surName: string,
   email: string,
-  mobileNumber: string,
+  mobileNumber?: string,
 }
 
 @Injectable({

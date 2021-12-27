@@ -30,6 +30,7 @@ export class DocumentUploadComponent implements OnInit {
   ngOnInit(): void {
     this.intntService.getInstnt().subscribe((instnt) => {
       this.instnt = instnt;
+      this.instnt.initImageProcessor();
     });
     this.events.DocumentCaptured.subscribe((res) => {
       if (res.data.captureResult?.result) {
@@ -55,6 +56,7 @@ export class DocumentUploadComponent implements OnInit {
     this.dataService.docBackUrl = this.backImgUrl;
     this.dataService.selfieUrl = this.selfieImgUrl;
     this.instnt?.verifyDocuments('License');
+    this.instnt?.verifyDocuments('');
     this.router.navigate(['submit-form']);
   }
 

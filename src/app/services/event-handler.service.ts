@@ -10,10 +10,10 @@ export class EventHandlerService {
   testInstnt: any
   eventHandler: any;
   transactionInit: ReplaySubject<Instnt> = new ReplaySubject(1);
-  OTPSent: Subject<any> = new Subject();
-  OTPVerified: Subject<any> = new Subject();
-  DocumentCaptured: Subject<any> = new Subject();
-  SubmitResult: Subject<any> = new Subject();
+  OTPSent: ReplaySubject<any> = new ReplaySubject(1);
+  OTPVerified: ReplaySubject<any> = new ReplaySubject(1);
+  DocumentCaptured: ReplaySubject<any> = new ReplaySubject(1);
+  SubmitResult: ReplaySubject<any> = new ReplaySubject(1);
   constructor() {
     this.eventHandler = (event: InstntEvent) => {
       this.testInstnt = event
@@ -51,10 +51,13 @@ export class EventHandlerService {
         case EventType.TransactionError:
           console.log('event type Transaction Error', event);
           this.SubmitResult.error(event);
+          this.SubmitResult.complete();
+          console.log('should have submited error and then complete')
           break;
         default:
           console.log("unhandled instnt event ", event);
           this.OTPVerified.complete();
+          this.SubmitResult.complete();
       }
 
     }

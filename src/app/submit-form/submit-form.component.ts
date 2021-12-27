@@ -10,24 +10,35 @@ import { EventHandlerService } from '../services/event-handler.service';
 })
 export class SubmitFormComponent implements OnInit {
 
+  errorMessage = '';
   response?: DecisionResponseModel;
   isLoading = false;
   instnt?: Instnt;
   isSubmited = false;
   constructor(private instntService: InstntAngularService, public data: DataService, private events: EventHandlerService) {
-    this.instntService.getInstnt().subscribe((instnt) => {this.instnt = instnt; console.log('instnt', instnt)});
+    this.instntService.getInstnt().subscribe((instnt) => {
+      this.instnt = instnt; 
+      console.log('instnt', instnt);
+
+    });
   }
 
   ngOnInit(): void {
     this.events.SubmitResult.subscribe({
       next: (res) => {
         this.isLoading = false;
+        console.log('Next called')
         console.log('Transaction proccessed Response', res);
         this.response = res.data;
       }, error: (err) => {
         this.isLoading = false;
+        console.log('error called')
         console.error('Error Processing Transactions', err);
-      }
+        this.errorMessage = err;
+      }, complete: () => {
+        console.log('complete called') 
+        this.isLoading = false;
+       }
     })
   }
 
@@ -43,7 +54,13 @@ export class SubmitFormComponent implements OnInit {
     this.isLoading = true;
     this.isSubmited = true;
 
-    //this.instnt?.submitData(this.data.userData, false);
+    // this.isLoading = true;
+    // this.isSubmited = true;
+    // if(!this.instnt?.otpVerification) {
+    //   delete this.data.userData.mobileNumber;
+    // }
+
+    // this.instnt?.submitData(this.data.userData, false);
   }
 
 }

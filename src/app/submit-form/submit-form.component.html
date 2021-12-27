@@ -4,21 +4,21 @@
         <mat-card-subtitle></mat-card-subtitle>
         <mat-card-content>
             <mat-list>
-                <mat-list-item><b>First Name:</b>{{ data.userData.firstName }}</mat-list-item>
-                <mat-list-item><b>Last Name:</b>{{ data.userData.surName }}</mat-list-item>
-                <mat-list-item><b>Email:</b>{{ data.userData.email }}</mat-list-item>
-                <mat-list-item><b>Mobile Number:</b>{{ data.userData.mobileNumber }}</mat-list-item>
+                <mat-list-item><span><b>First Name:</b> {{ data.userData.firstName }}</span></mat-list-item>
+                <mat-list-item><span><b>Last Name:</b> {{ data.userData.surName }}</span></mat-list-item>
+                <mat-list-item><span><b>Email:</b> {{ data.userData.email }}</span></mat-list-item>
+                <mat-list-item><span><b>Mobile Number:</b> {{ data.userData.mobileNumber }}</span></mat-list-item>
             </mat-list>
-            <mat-grid-list cols="2" rowHeight="2:1">
+            <mat-grid-list cols="2" rowHeight="2:1.3">
                 <mat-list-item><b>Images:</b></mat-list-item>
                 <mat-grid-tile [rowspan]="2">
-                    <img *ngIf="data.selfieUrl" src="data.selfieUrl" alt="">
+                    <img width="100%" *ngIf="data.selfieUrl" src="{{data.selfieUrl}}" alt="">
                 </mat-grid-tile>
                 <mat-grid-tile>
-                    <img *ngIf="data.docFrontUrl" src="data.docFrontUrl" alt="">
+                    <img width="100%" *ngIf="data.docFrontUrl" src="{{data.docFrontUrl}}" alt="">
                 </mat-grid-tile>
                 <mat-grid-tile>
-                    <img *ngIf="data.docBackUrl" src="data.docBackUrl" alt="">
+                    <img width="100%" *ngIf="data.docBackUrl" src="{{data.docBackUrl}}" alt="">
                 </mat-grid-tile>
             </mat-grid-list>
             <div *ngIf="isLoading" class="loading">
@@ -53,15 +53,27 @@
                 </div>
                 <p>Please check your Instnt Dashboard for <br>more details regarding this transaction</p>
             </div>
+            <div *ngIf="errorMessage">
+                <div class="reject">
+                    <p>
+                        <mat-icon aria-hidden="false" aria-label="Example home icon"
+                            style="position: relative; top: 6px">
+                            highlight_off</mat-icon> {{ errorMessage }}
+                    </p>
+                </div>
+                <p>Please check your Instnt Dashboard for <br>more details regarding this error</p>
+            </div>
         </mat-card-content>
         <mat-card-actions>
             <div *ngIf="!isSubmited" class="flex-between">
                 <button [routerLink]="['/doc-upload']" mat-raised-button color="primary">Back</button>
-                <span style="margin-top: 8px;">4/4</span>
+                <span *ngIf="instnt?.otpVerification" style="margin-top: 8px;">4/4</span>
+                <span *ngIf="!instnt?.otpVerification" style="margin-top: 8px;">3/3</span>
                 <button mat-raised-button color="primary" (click)="submitApplication()">Submit</button>
             </div>
             <div *ngIf="isSubmited">
-                <button [routerLink]="['/']" routerLinkActive="router-link-active"  mat-raised-button color="primary">Star Over</button>
+                <button [routerLink]="['/']" routerLinkActive="router-link-active" mat-raised-button
+                    color="primary">Star Over</button>
             </div>
         </mat-card-actions>
     </mat-card>
