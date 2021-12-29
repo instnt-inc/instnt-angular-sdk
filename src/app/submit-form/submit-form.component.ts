@@ -51,7 +51,7 @@ export class SubmitFormComponent implements OnInit {
     this.instnt?.submitData(this.data.userData, false);
     setTimeout(() => {
       if (this.isRetrySubmit) {
-        console.warn('lambda may have timeout, retrying call');
+        console.warn('error occured retrying call one more time');
         this.instnt?.submitData(this.data.userData, false);
         this.isRetrySubmit = false;
       } else {
