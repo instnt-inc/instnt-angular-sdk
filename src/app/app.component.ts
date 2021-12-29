@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { InstntAngularService } from 'projects/instnt-angular/src/public-api';
+import { DataService } from './services/data.service';
 import { EventHandlerService } from './services/event-handler.service';
 
 @Component({
@@ -8,16 +9,11 @@ import { EventHandlerService } from './services/event-handler.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  formId: string = 'v1639687041590101';
-  serviceURL: string = 'https://dev-api.instnt.org';
-  onEvent: any;
-  children?: any;
+  
 
-  constructor(public instntService: InstntAngularService, private handler: EventHandlerService) {
-    this.onEvent = this.handler.eventHandler;
+  constructor() {
    }
   ngOnInit(): void {
-    this.instntService.getInstnt().subscribe((instnt) => {
-    })
+    
   }
 }

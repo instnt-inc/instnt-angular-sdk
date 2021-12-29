@@ -12,12 +12,16 @@ export interface UserData {
 })
 export class DataService {
 
+  formId: string;
+  serviceUrl: string;
   userData: UserData;
   docFrontUrl?: string;
   docBackUrl?: string;
   selfieUrl?: string;
 
   constructor() {
+    this.formId = 'v1639687041590101';
+    this.serviceUrl = 'https://dev-api.instnt.org';
     this.userData = {
       firstName: '',
       surName: '',

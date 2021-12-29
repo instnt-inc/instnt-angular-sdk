@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Instnt, InstntAngularService } from 'projects/instnt-angular/src/public-api';
 import { DataService } from '../services/data.service';
+import { EventHandlerService } from '../services/event-handler.service';
 
 @Component({
   selector: 'app-signup',
@@ -12,13 +13,18 @@ import { DataService } from '../services/data.service';
 export class SignupComponent implements OnInit {
 
   instnt?: Instnt;
+
   signUpForm: FormGroup;
   firstName = new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z- ]*$/), Validators.maxLength(50)]);
   lastName = new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z- ]*$/), Validators.maxLength(50)]);
   email = new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z0-9+.]+@([\w-]+\.)+[\w-]{2,}$/), Validators.maxLength(100)]);
 
-  constructor(private instntService: InstntAngularService, private dataService: DataService, private router: Router) {
-    this.instntService.getInstnt().subscribe((instnt) => {this.instnt = instnt; console.log('instnt', instnt)});
+  constructor(
+    public dataService: DataService,
+    private instntService: InstntAngularService,
+    private router: Router) {
+    console.log('service url:', this.dataService.serviceUrl);
+    this.instntService.getInstnt().subscribe((instnt) => { this.instnt = instnt; console.log('instnt', instnt) });
     this.signUpForm = new FormGroup({
       firstName: this.firstName,
       lastName: this.lastName,
@@ -37,16 +43,16 @@ export class SignupComponent implements OnInit {
       email: this.signUpForm.get('email')?.value,
     }
     this.dataService.setUserData(data.firstName, data.surName, data.email, '');
+    this.router.navigate(['otp-verify']);
 
-    // test code bellow
-    const userData = {
-      firstName: this.signUpForm.get('firstName')?.value,
-      surName: this.signUpForm.get('lastName')?.value,
-      email: this.signUpForm.get('email')?.value,
-      mobileNumber: '+18454213433',
-    }
-    this.router.navigate(['otp-verify'])
     console.log('instnt', this.instnt);
+    // test code bellow
+    // const userData = {
+    //   firstName: this.signUpForm.get('firstName')?.value,
+    //   surName: this.signUpForm.get('lastName')?.value,
+    //   email: this.signUpForm.get('email')?.value,
+    //   mobileNumber: '+18454213433',
+    // }
   }
 
 }

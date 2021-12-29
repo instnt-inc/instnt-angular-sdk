@@ -57,7 +57,6 @@ export class EventHandlerService {
         default:
           console.log("unhandled instnt event ", event);
           this.OTPVerified.complete();
-          this.SubmitResult.complete();
       }
 
     }

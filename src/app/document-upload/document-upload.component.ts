@@ -56,7 +56,6 @@ export class DocumentUploadComponent implements OnInit {
     this.dataService.docBackUrl = this.backImgUrl;
     this.dataService.selfieUrl = this.selfieImgUrl;
     this.instnt?.verifyDocuments('License');
-    this.instnt?.verifyDocuments('');
     this.router.navigate(['submit-form']);
   }
 

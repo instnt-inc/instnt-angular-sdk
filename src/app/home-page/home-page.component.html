@@ -1,24 +1,50 @@
+<instnt-signup-provider *ngIf="isInstntInitiated" [formId]="data.formId" [serviceURL]="data.serviceUrl" [onEvent]="onEvent"
+    [children]="children">
+</instnt-signup-provider>
+
 <div class="flex-center" style="padding-top: 12px;">
     <div class="container">
         <h2>This process consist of the following steps</h2>
-    <mat-list>
-        <mat-list-item>
-            <mat-icon>lens</mat-icon><span>Colllect User Information</span>
-        </mat-list-item>
-        <mat-list-item>
-            <mat-icon>lens</mat-icon><span>If OTP is enabled, it'll text the mobile number to send a OTP, then verifies it.</span>
-        </mat-list-item>
-        <mat-list-item>
-            <mat-icon>lens</mat-icon><span>Capture Photos of the user's driver's license and the user itself via a selfie.</span>
-        </mat-list-item>
-        <mat-list-item>
-            <mat-icon>lens</mat-icon><span>Allows the user to review and submit the application, then displays the decision</span>
-        </mat-list-item>
-    </mat-list>
-    <div class="get-started">
-        <!-- 'mat-button','mat-raised-button', 'mat-flat-button','mat-stroked-button','mat-icon-button','mat-fab','mat-mini-fab' -->
-        <button [routerLink]="['/sign-up']" routerLinkActive="router-link-active"  mat-raised-button color="primary">Get Started</button>
-    </div>
+        <mat-list>
+            <mat-list-item>
+                <mat-icon>lens</mat-icon><span>Colllect User Information</span>
+            </mat-list-item>
+            <mat-list-item>
+                <mat-icon>lens</mat-icon><span>If OTP is enabled, it'll text the mobile number to send a OTP, then it
+                    verifies it.</span>
+            </mat-list-item>
+            <mat-list-item>
+                <mat-icon>lens</mat-icon><span>Captures photos of the user's driver's license and the user itself via a
+                    selfie.</span>
+            </mat-list-item>
+            <mat-list-item>
+                <mat-icon>lens</mat-icon><span>Allows the user to review and submit the application, then displays the
+                    decision</span>
+            </mat-list-item>
+        </mat-list>
+        <div *ngIf="!isLoading" class="input-area">
+            <h3><b>Optional:</b> Use your own workflow and service URL</h3>
+            <div class="error-box" *ngIf="errorMsg">{{ errorMsg }}</div>
+            <mat-form-field class="full-width" appearance="fill">
+                <mat-label>Workflow ID</mat-label>
+                <input type="text" matInput [(ngModel)]="data.formId">
+            </mat-form-field>
+            <mat-form-field class="full-width" appearance="fill">
+                <mat-label>service URL</mat-label>
+                <input type="text" matInput [(ngModel)]="data.serviceUrl">
+            </mat-form-field>
+        </div>
+        <div *ngIf="isLoading" class="loading">
+            <div class="flex-center">
+                <mat-spinner color="accent" diameter="50"></mat-spinner>
+            </div>
+            <div style="text-align: center;">
+            </div>
+        </div>
+        <div class="get-started">
+            <button routerLinkActive="router-link-active" mat-raised-button
+                color="primary" (click)="onGetStarted()">Get Started</button>
+        </div>
     </div>
 </div>
 <!-- <lib-instnt-angular [formId]="'123'"></lib-instnt-angular> -->

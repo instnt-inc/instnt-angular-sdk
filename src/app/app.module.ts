@@ -13,7 +13,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatCardModule} from '@angular/material/card';
 import { SignupComponent } from './signup/signup.component';
 import {MatInputModule} from '@angular/material/input';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { OtpVerificationComponent } from './otp-verification/otp-verification.component';
 import { EventHandlerService } from './services/event-handler.service';
@@ -34,6 +34,7 @@ import { DataService } from './services/data.service';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     InstntAngularModule,
     BrowserAnimationsModule,
