@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DecisionResponseModel, Instnt, InstntAngularService } from 'projects/instnt-angular/src/public-api';
-import { firstValueFrom } from 'rxjs';
+import { firstValueFrom, lastValueFrom } from 'rxjs';
 import { DataService } from '../services/data.service';
 import { EventHandlerService } from '../services/event-handler.service';
 
@@ -16,7 +16,7 @@ export class SubmitFormComponent implements OnInit {
   isLoading = false;
   instnt?: Instnt;
   isSubmited = false;
-  isLambdaTimeout = true;
+  isRetrySubmit = true;
   constructor(private instntService: InstntAngularService, public data: DataService, private events: EventHandlerService) {
     this.instntService.getInstnt().subscribe((instnt) => {
       this.instnt = instnt;
@@ -27,20 +27,20 @@ export class SubmitFormComponent implements OnInit {
 
   ngOnInit(): void {
     firstValueFrom(this.events.SubmitResult).then((res) => {
-      this.isLambdaTimeout = false;
+      this.isRetrySubmit = false;
       this.isLoading = false;
       console.log('Transaction proccessed Response', res);
       this.response = res.data;
     }).catch((err) => {
-      console.log('error called')
       console.error('Error Processing Transactions', err);
-      console.log('err.error = ', err.error);
-      err.error === "" ? this.isLambdaTimeout = true : this.isLambdaTimeout = false;
-      console.log('this.isLambdaTimeout: ', this.isLambdaTimeout);
-      this.isLoading = false;
-      this.errorMessage = err;
+      if (this.isRetrySubmit) {
+        console.log('error Occured, retrying');
+      } else {
+        this.isLoading = false;
+        this.errorMessage = err;
+        this.response = err.data;
+      }
     }).finally(() => {
-      this.isLoading = false;
     });
   }
 
@@ -50,13 +50,14 @@ export class SubmitFormComponent implements OnInit {
     this.isSubmited = true;
     this.instnt?.submitData(this.data.userData, false);
     setTimeout(() => {
-      if(this.isLambdaTimeout) {
+      if (this.isRetrySubmit) {
         console.warn('lambda may have timeout, retrying call');
         this.instnt?.submitData(this.data.userData, false);
+        this.isRetrySubmit = false;
       } else {
-        console.log('lambda has not timed-out, this.isLambdaTimeout: ', this.isLambdaTimeout)
+        console.log('Submission succeeded, no need to try again');
       }
-    }, 31000);
+    }, 35000);
 
   }
 

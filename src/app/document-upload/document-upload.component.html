@@ -6,7 +6,14 @@
     <instnt-selfie-processor></instnt-selfie-processor>
 </div>
 <div class="page-content">
-    <h2>Upload Document Images and Selfie</h2>
+    <div *ngIf="instnt && instnt.documentVerification">
+        <h2>Upload Document Images and Selfie</h2>
+    </div>
+    <div *ngIf="instnt && !instnt.documentVerification">
+        <h2 style="margin-bottom: 0px;">Document Verification is Turned Off</h2>
+        <p style="color: #757575; margin-left: 8px;">
+            Please enable Document Verification in your Workflow to verify images uploaded here.</p>
+    </div>
     <mat-accordion>
         <!-- Front Panel -->
         <mat-expansion-panel [expanded]="true">
@@ -73,11 +80,14 @@
     </mat-accordion>
     <mat-card>
         <div class="flex-between">
-            <button [routerLink]="['/sign-up']" routerLinkActive="router-link-active" mat-raised-button
+            <button [routerLink]="['/otp-verify']" routerLinkActive="router-link-active" mat-raised-button
                 color="primary">Back</button>
             <span style="margin-top: 8px;">3/4</span>
-            <button routerLinkActive="router-link-active" mat-raised-button color="primary"
-                [disabled]="!(frontImgUrl && backImgUrl && selfieImgUrl)" (click)="onGoToNextStep()">Next Step</button>
+            <button *ngIf="instnt && instnt.documentVerification" routerLinkActive="router-link-active"
+                mat-raised-button color="primary" [disabled]="!(frontImgUrl && backImgUrl && selfieImgUrl)"
+                (click)="onGoToNextStep()">Next Step</button>
+            <button [routerLink]="['/submit-form']" routerLinkActive="router-link-active"
+                *ngIf="instnt && !instnt.documentVerification" mat-raised-button color="primary">Skip This Step</button>
         </div>
     </mat-card>
 </div>
