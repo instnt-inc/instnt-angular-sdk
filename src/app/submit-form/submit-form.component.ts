@@ -16,7 +16,6 @@ export class SubmitFormComponent implements OnInit {
   isLoading = false;
   instnt?: Instnt;
   isSubmited = false;
-  isRetrySubmit = true;
   constructor(private instntService: InstntAngularService, public data: DataService, private events: EventHandlerService) {
     this.instntService.getInstnt().subscribe((instnt) => {
       this.instnt = instnt;
@@ -27,19 +26,18 @@ export class SubmitFormComponent implements OnInit {
 
   ngOnInit(): void {
     firstValueFrom(this.events.SubmitResult).then((res) => {
-      this.isRetrySubmit = false;
       this.isLoading = false;
       console.log('Transaction proccessed Response', res);
       this.response = res.data;
     }).catch((err) => {
       console.error('Error Processing Transactions', err);
-      if (this.isRetrySubmit) {
-        console.log('error Occured, retrying');
-      } else {
-        this.isLoading = false;
+      this.isLoading = false;
+      if(err.error) {
         this.errorMessage = err;
-        this.response = err.data;
+      } else {
+        this.errorMessage = 'There was an error while processing your transaction, please submit it one more time'
       }
+      this.isSubmited = false;
     }).finally(() => {
     });
   }
@@ -49,15 +47,6 @@ export class SubmitFormComponent implements OnInit {
     this.isLoading = true;
     this.isSubmited = true;
     this.instnt?.submitData(this.data.userData, false);
-    setTimeout(() => {
-      if (this.isRetrySubmit) {
-        console.warn('error occured retrying call one more time');
-        this.instnt?.submitData(this.data.userData, false);
-        this.isRetrySubmit = false;
-      } else {
-        console.log('Submission succeeded, no need to try again');
-      }
-    }, 35000);
 
   }
 
