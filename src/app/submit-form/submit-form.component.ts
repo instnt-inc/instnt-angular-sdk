@@ -35,7 +35,7 @@ export class SubmitFormComponent implements OnInit {
       if(err.error) {
         this.errorMessage = err;
       } else {
-        this.errorMessage = 'There was an error while processing your transaction, please submit it one more time'
+        this.errorMessage = 'There was an error while processing your transaction, please try again'
       }
       this.isSubmited = false;
     }).finally(() => {
