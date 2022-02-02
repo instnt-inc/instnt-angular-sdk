@@ -1,7 +1,13 @@
 {
-  "name": "instnt-angular",
-  "version": "0.0.1",
+  "name": "@instnt/instnt-angular-sdk",
+  "version": "0.1.0",
+  "description": "Angular SDK for Instnt Forms",
   "author": "Claudio Teles",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
   "peerDependencies": {
     "@angular/common": "^13.0.0",
     "@angular/core": "^13.0.0"
