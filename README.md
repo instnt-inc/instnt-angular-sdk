@@ -81,12 +81,18 @@ To initate Instnt you need to include the instnt tag in your html file and pass 
 
 After the initiation, you get the [Instnt Object.](#instnt-object) This object has all the necesaary function and event deatils for you to work with.
 
+## Instnt service
+
+In this Angular SDK use the `instntservice` to get an observable via `getInstnt()` function.
+When you subscribe to the instntservice you get an Instnt object that can be referenced application wide to access various functions and properties.
+
 # Document verification
 Document verification feature comes into the picture if you have enabled it during the workflow creation.
 
 When this feature is enabled, the physical capture and verification of selfies and Government-issued identification documents such as Passports and Driver's License is available.
 
 **Note:** Document Verification feature usage in your SDK requires a **License** **key**. Please contact the support at the email support@instnt.org for further assistance.
+
 
 Read the [Document Verification](https://support.instnt.org/hc/en-us/articles/4408781136909#heading-6) section of the Quickstart guide to understand better about how to enable the feature.
 
@@ -101,6 +107,7 @@ Read the [Document Verification](https://support.instnt.org/hc/en-us/articles/44
 * Do not include HTML tags with IDs containing the prefix 'aid.' e.g. `<div id=’aidFooter’>` in your web app as this prefix is reserved to be used by the toolkit. 
 
 * Document verification requires end-to-end communication over SSL to get permission to use the device camera.
+
 
 ## Setup for InstntDocumentProcessor component
 
@@ -132,8 +139,7 @@ captureFrameworkDebug?: boolean = false;
 **Function call**
 
 ```java
-
-
+documentCapture(this.documentType, this.documentSide, this.captureMode, this.autoUpload, this.captureFrameworkDebug);
 ```
 
 ## Setup for InstntSelfieProcessor component
@@ -202,13 +208,12 @@ constructor(
  this.instnt?.sendOTP(phone);
 ```
 
-* Next can use the library function verifyOTP with the phone numnber as the argument in the following fashion:
+* Next you can use the library function verifyOTP with the phone numnber as the argument as shown on the sample code:
 
 **Example**
 ```java
 this.instnt?.verifyOTP(phone, this.otpVerifyForm.get('otpVerify')?.value);
 ```
-
 
 Please refer to the [library function](#instnt-object) listed below for more details.
 
@@ -226,7 +231,6 @@ Your application can listen to the [events](#events) emitted by Instnt's SDK and
 ``` java
 export class EventHandlerService {
 
-  testInstnt: any
   eventHandler: any;
   transactionInit: ReplaySubject<Instnt> = new ReplaySubject(1);
   OTPSent: ReplaySubject<any> = new ReplaySubject(1);
@@ -289,7 +293,7 @@ In the `instnt.interface` component you can find the `InstntEvent` where `type: 
 This event type can be used to handle the various events provided by Instnt.
 
 
-<table data-layout="default" data-local-id="1160fb90-4271-4e56-bdfe-3e08f28e5d90" class="confluenceTable"><colgroup><col style="width: 159.0px;"><col style="width: 200.0px;"><col style="width: 400.0px;"></colgroup><tbody><tr><th class="confluenceTh"><p></p></th><th class="confluenceTh"><p></p></th><th class="confluenceTh"><p></p></th></tr>
+<table data-layout="default" data-local-id="1160fb90-4271-4e56-bdfe-3e08f28e5d90" class="confluenceTable"><colgroup><col style="width: 159.0px;"><col style="width: 200.0px;"><col style="width: 400.0px;"></colgroup><tbody><tr><th class="confluenceTh"><p>Event</p></th><th class="confluenceTh"><p>Event Implementation</p></th><th class="confluenceTh"><p>Description</p></th></tr>
 
 <tr><td class="confluenceTd"><p>Instnt Initialized</p></td><td class="confluenceTd"><p>transaction.initiated </p></td><td class="confluenceTd"><p>This signifies that the Instnt framework has finished initializing and is ready to accept user input.</p><p>Instnt object contains a transaction ID and SDK functions.</p></td></tr>
 
@@ -333,21 +337,22 @@ This event type can be used to handle the various events provided by Instnt.
 ## Instnt library functions
 
 <table data-layout="default" data-local-id="1461e79a-6df4-4f4b-b7df-a9a072096fd3" class="confluenceTable"><colgroup><col style="width: 173.0px;"><col style="width: 71.0px;"><col style="width: 65.0px;"></colgroup><tbody><tr><th class="confluenceTh"><p><strong>Property</strong></p></th><th class="confluenceTh"><p><strong>Type</strong></p></th><th class="confluenceTh"><p><strong>Parameters</strong></p></th><th class="confluenceTh"><p><strong>Description</strong></p></th></tr>
+
 <tr><td class="confluenceTd"><p>onEvent</p></td><td class="confluenceTd"><p>function</p></td><td class="confluenceTd"><p>event</p></td><td class="confluenceTd"><p>An event handler receiving Instnt events.</p></td></tr>
 
 <tr><td class="confluenceTd"><p><a id="user-content-init" class="anchor" aria-hidden="true" href="#init">init</p></td><td class="confluenceTd"><p>function</p></td><td class="confluenceTd"><p></p></td><td class="confluenceTd"><p>Initializes an Instnt signup session.</p></td></tr>
 
 <tr><td class="confluenceTd"><p><a id="user-content-uploadAttachment" class="anchor" aria-hidden="true" href="#uploadAttachment">uploadAttachment</p></td><td class="confluenceTd"><p>function</p></td><td class="confluenceTd"><p>imageSettings, captureResult, <br>isSelfie = false</p></td><td class="confluenceTd"><p>Upload a document file to Instnt server.</p></td></tr>
 
-<tr><td class="confluenceTd"><p><a id="user-content-uploadAttachment" class="anchor" aria-hidden="true" href="#uploadAttachment">verifyDocuments</p></td><td class="confluenceTd"><p>function</p></td><td class="confluenceTd"><p>documentType</p></td><td class="confluenceTd"><p>Initiate document verification on Instnt server.</p></td></tr>
+<tr><td class="confluenceTd"><p><a id="user-content-verifyDocuments" class="anchor" aria-hidden="true" href="#verifyDocuments">verifyDocuments</p></td><td class="confluenceTd"><p>function</p></td><td class="confluenceTd"><p>documentType</p></td><td class="confluenceTd"><p>Initiate document verification on Instnt server.</p></td></tr>
 
-<tr><td class="confluenceTd"><p><a id="user-content-uploadAttachment" class="anchor" aria-hidden="true" href="#uploadAttachment">submitData</p></td><td class="confluenceTd"><p>function</p></td><td class="confluenceTd"><p>data</p></td><td class="confluenceTd"><p>Submit the user entered data to Instnt server and initiate customer approval process.</p></td></tr>
+<tr><td class="confluenceTd"><p><a id="user-content-submitData" class="anchor" aria-hidden="true" href="#submitData">submitData</p></td><td class="confluenceTd"><p>function</p></td><td class="confluenceTd"><p>data</p></td><td class="confluenceTd"><p>Submit the user entered data to Instnt server and initiate customer approval process.</p></td></tr>
 
-<tr><td class="confluenceTd"><p><a id="user-content-uploadAttachment" class="anchor" aria-hidden="true" href="#uploadAttachment">getTransactionStatus</p></td><td class="confluenceTd"><p>function</p></td><td class="confluenceTd"><p>instnttxnid</p></td><td class="confluenceTd"><p>Gets the status of the transaction that includes the form fields verification and document verification status</p></td></tr>
+<tr><td class="confluenceTd"><p><a id="user-content-getTransactionStatus" class="anchor" aria-hidden="true" href="#getTransactionStatus">getTransactionStatus</p></td><td class="confluenceTd"><p>function</p></td><td class="confluenceTd"><p>instnttxnid</p></td><td class="confluenceTd"><p>Gets the status of the transaction that includes the form fields verification and document verification status</p></td></tr>
 
-<tr><td class="confluenceTd"><p><a id="user-content-uploadAttachment" class="anchor" aria-hidden="true" href="#uploadAttachment">sendOTP</p></td><td class="confluenceTd"><p>function</p></td><td class="confluenceTd"><p>mobileNumber</p></td><td class="confluenceTd"><p>Sends one-time password to the mobile number provided</p></td></tr>
+<tr><td class="confluenceTd"><p><a id="user-content-sendOTP" class="anchor" aria-hidden="true" href="#sendOTP">sendOTP</p></td><td class="confluenceTd"><p>function</p></td><td class="confluenceTd"><p>mobileNumber</p></td><td class="confluenceTd"><p>Sends one-time password to the mobile number provided</p></td></tr>
 
-<tr><td class="confluenceTd"><p><a id="user-content-uploadAttachment" class="anchor" aria-hidden="true" href="#uploadAttachment">verifyOTP</p></td><td class="confluenceTd"><p>function</p></td><td class="confluenceTd"><p>mobileNumber, otpCode</p></td><td class="confluenceTd"><p>Verifies one-time password to the provided mobile number</p></td></tr>
+<tr><td class="confluenceTd"><p><a id="user-content-verifyOTP" class="anchor" aria-hidden="true" href="#verifyOTP"> verifyOTP</p></td><td class="confluenceTd"><p>function</p></td><td class="confluenceTd"><p>mobileNumber, otpCode</p></td><td class="confluenceTd"><p>Verifies one-time password to the provided mobile number</p></td></tr>
 
 </tbody></table>
 
@@ -390,41 +395,17 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
 Once the components have been installed and imported, collect data from the user. Example:
-
+```html
   <mat-form-field class="example-full-width">
     <mat-label>Email Address</mat-label>
     <input matInput placeholder="Email Address" formControlName="email">
   </mat-form-field>
+  ```
 The 'email' input here is used as an example and can be anything you'd like to have appear on the workflow. Always include the value and onChange fields as written in the example above, as they mark the text field as data to be passed through the InstntCustomSignUp function.
 
-## Minimum requirements
+## Angular Version
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.0.3.
-
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
-
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.0.3. But it can used on the older versions of Angular as well.
 
 # License
 
