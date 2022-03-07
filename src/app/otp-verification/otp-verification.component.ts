@@ -69,11 +69,17 @@ export class OtpVerificationComponent implements OnInit {
     const phone = '+1' + this.phoneVerifyForm.get('phone')?.value;
     this.dataService.setMobileNumber(phone);
     if (this.instnt?.otpVerification) {
-      this.instnt?.verifyOTP(phone, this.otpVerifyForm.get('otpVerify')?.value);
+      const otpCode = this.otpVerifyForm.get('otpVerify')?.value;
+      this.instnt?.verifyOTP(phone, otpCode);
       firstValueFrom(this.handler.OTPVerified).then((data) => {
         this.isLoading = false,
         this.router.navigate(['doc-upload']);
-      });
+      }).catch((err) => {
+        console.error('error verifying OTP');
+        console.error(err);
+        this.isLoading = false;
+        this.errorMessage = err.message;
+    });
     } else {
       this.isLoading = false,
       this.router.navigate(['doc-upload']);
