@@ -1,3 +1,8 @@
+<div *ngIf="errorMessage" class="error-box">
+    <mat-icon class="cursor" aria-hidden="false" aria-label="Example home icon" (click)="errorMessage = ''">
+        close</mat-icon>
+    {{ errorMessage }}
+</div>
 <div *ngIf="captureTarget === 'Front' || captureTarget === 'Back'">
     <instnt-document-processor [documentType]="'License'" [documentSide]="captureTarget">
     </instnt-document-processor>

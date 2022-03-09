@@ -16,7 +16,7 @@ export class OtpVerificationComponent implements OnInit {
   isLoading = false;
   isOtpReceived = false;
   loadingMessage = '';
-  errorMessage = '';
+  errorMessage = 'instnt not instantiated, please start from the beginning';
   instnt?: Instnt;
   phoneVerifyForm: FormGroup;
   phone = new FormControl('',
@@ -29,7 +29,10 @@ export class OtpVerificationComponent implements OnInit {
     public handler: EventHandlerService,
     private router: Router,
     private dataService: DataService) {
-    this.instntService.getInstnt().subscribe((instnt) => this.instnt = instnt);
+    this.instntService.getInstnt().subscribe((instnt) => {
+      this.instnt = instnt;
+      this.errorMessage = '';
+    });
     this.phoneVerifyForm = new FormGroup({
       phone: this.phone,
     });
@@ -69,11 +72,17 @@ export class OtpVerificationComponent implements OnInit {
     const phone = '+1' + this.phoneVerifyForm.get('phone')?.value;
     this.dataService.setMobileNumber(phone);
     if (this.instnt?.otpVerification) {
-      this.instnt?.verifyOTP(phone, this.otpVerifyForm.get('otpVerify')?.value);
+      const otpCode = this.otpVerifyForm.get('otpVerify')?.value;
+      this.instnt?.verifyOTP(phone, otpCode);
       firstValueFrom(this.handler.OTPVerified).then((data) => {
         this.isLoading = false,
         this.router.navigate(['doc-upload']);
-      });
+      }).catch((err) => {
+        console.error('error verifying OTP');
+        console.error(err);
+        this.isLoading = false;
+        this.errorMessage = err.message;
+    });
     } else {
       this.isLoading = false,
       this.router.navigate(['doc-upload']);

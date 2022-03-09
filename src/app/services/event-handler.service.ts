@@ -47,6 +47,7 @@ export class EventHandlerService {
         case EventType.TransactionProcessed:
           console.log('event type Transaction Proccessed', event);
           this.SubmitResult.next(event);
+          this.SubmitResult.complete();
           break;
         case EventType.TransactionError:
           console.log('event type Transaction Error', event);
