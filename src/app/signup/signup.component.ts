@@ -13,6 +13,7 @@ import { EventHandlerService } from '../services/event-handler.service';
 export class SignupComponent implements OnInit {
 
   instnt?: Instnt;
+  errorMessage = 'instnt not instantiated, please start from the beginning';
 
   signUpForm: FormGroup;
   firstName = new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z- ]*$/), Validators.maxLength(50)]);
@@ -24,7 +25,11 @@ export class SignupComponent implements OnInit {
     private instntService: InstntAngularService,
     private router: Router) {
     console.log('service url:', this.dataService.serviceUrl);
-    this.instntService.getInstnt().subscribe((instnt) => { this.instnt = instnt; console.log('instnt', instnt) });
+    this.instntService.getInstnt().subscribe((instnt) => { 
+      this.instnt = instnt; 
+      this.errorMessage = ''
+      console.log('instnt', instnt);
+     });
     this.signUpForm = new FormGroup({
       firstName: this.firstName,
       lastName: this.lastName,

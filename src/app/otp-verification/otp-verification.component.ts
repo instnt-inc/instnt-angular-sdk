@@ -16,7 +16,7 @@ export class OtpVerificationComponent implements OnInit {
   isLoading = false;
   isOtpReceived = false;
   loadingMessage = '';
-  errorMessage = '';
+  errorMessage = 'instnt not instantiated, please start from the beginning';
   instnt?: Instnt;
   phoneVerifyForm: FormGroup;
   phone = new FormControl('',
@@ -29,7 +29,10 @@ export class OtpVerificationComponent implements OnInit {
     public handler: EventHandlerService,
     private router: Router,
     private dataService: DataService) {
-    this.instntService.getInstnt().subscribe((instnt) => this.instnt = instnt);
+    this.instntService.getInstnt().subscribe((instnt) => {
+      this.instnt = instnt;
+      this.errorMessage = '';
+    });
     this.phoneVerifyForm = new FormGroup({
       phone: this.phone,
     });

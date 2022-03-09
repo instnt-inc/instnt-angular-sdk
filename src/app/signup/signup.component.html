@@ -3,6 +3,11 @@
     <mat-card-title>Enter Your Contact Information</mat-card-title>
     <mat-card-subtitle>All fields are required</mat-card-subtitle>
     <mat-card-content>
+      <div *ngIf="errorMessage" class="error-box">
+        <mat-icon class="cursor" aria-hidden="false" aria-label="Example home icon" (click)="errorMessage = ''">
+          close</mat-icon>
+        {{ errorMessage }}
+      </div>
       <form [formGroup]="signUpForm" action="submit">
         <mat-form-field class="full-width" appearance="fill">
           <mat-label>First Name</mat-label>

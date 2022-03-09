@@ -16,10 +16,10 @@ export class DocumentUploadComponent implements OnInit {
   loadingMessage = '';
   instnt?: Instnt;
   captureTarget = '';
-  //frontImgUrl: string = 'https://thispersondoesnotexist.com/image';
   frontImgUrl: string = '';
   backImgUrl: string = '';
   selfieImgUrl: string = '';
+  errorMessage = 'instnt not instantiated, please start from the beginning';
 
   constructor(
     private intntService: InstntAngularService, 
@@ -31,6 +31,7 @@ export class DocumentUploadComponent implements OnInit {
     this.intntService.getInstnt().subscribe((instnt) => {
       this.instnt = instnt;
       this.instnt.initImageProcessor();
+      this.errorMessage = '';
     });
     this.events.DocumentCaptured.subscribe((res) => {
       if (res.data.captureResult?.result) {
