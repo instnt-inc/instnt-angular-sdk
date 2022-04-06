@@ -20,15 +20,19 @@ export class InstntSelfieProcessorComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    const selfieCapture = (window as any).selfieCapture;
-    if (!(window as any).DocumentSettings) {
-      console.error('Document Capture is Null, please run instnt.initImageProcessor() before running instntImageProcessor(props)');
-      console.error(`If error persist try running instntImageProcessor inside a setTimeout() function i.e.
-      setTimeout(() => {
-        this.intntService.instntImageProcessor(props);
-      }, 4000);`)
+    const captureSelfie = (window as any).instnt.captureSelfie;
+    if ((window as any).instnt) {
+      if (!(window as any).instnt.captureSelfie) {
+        console.error('captureSelfie is Null, please run instnt.initImageProcessor() before running instntImageProcessor(props)');
+        console.error(`If error persist try running instntImageProcessor inside a setTimeout() function i.e.
+        setTimeout(() => {
+          this.intntService.instntImageProcessor(props);
+        }, 4000);`)
+      } else {
+        captureSelfie(this.captureMode, this.autoUpload, this.captureFrameworkDebug);
+      }
     } else {
-      selfieCapture(this.captureMode, this.autoUpload, this.captureFrameworkDebug);
+      console.error('instnt is Null, please make sure to instantiate instnt by using the <instnt-signup-provider> component');
     }
   }
 

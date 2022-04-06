@@ -1,6 +1,8 @@
 export interface Instnt {
     base64toBlob: (b64Data: any, sliceSize: number) => {}
     buildErrorMessage: (process: any, context: any, data: any, status: any) => {},
+    captureDocument: (documentType: string, documentSide: string, captureMode: string, autoUpload: boolean) => {}
+    captureSelfie: (captureMode: string, autoUpload: boolean) => {}
     documentVerification: true,
     emit: (event: any) => {},
     formKey: string,
