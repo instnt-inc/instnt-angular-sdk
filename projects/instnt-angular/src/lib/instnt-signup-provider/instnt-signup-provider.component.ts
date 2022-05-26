@@ -21,6 +21,7 @@ export class InstntSignupProviderComponent implements OnInit, AfterViewInit {
   @Input() hideFormFields?: boolean = true;
   @Input() redirect?: boolean = false;
   @ViewChild('innerDivElement') innerDivElement: ElementRef = new ElementRef(null);
+  readonly idmetrics_version = '4.5.12'
 
   constructor(private http: HttpClient, private service: InstntAngularService) { }
 
@@ -39,7 +40,7 @@ export class InstntSignupProviderComponent implements OnInit, AfterViewInit {
       redirect: this.redirect,
     }
     if (this.serviceURL) {
-      this.http.post(this.serviceURL + '/public/transactions?idmetrics_version=4.5.4', payload).subscribe({
+      this.http.post(this.serviceURL + `/public/transactions?idmetrics_version=${this.idmetrics_version}`, payload).subscribe({
         next: (res: any) => {
           const jQueryFragment = res.html;
           const fragment = document.createRange().createContextualFragment(jQueryFragment);
