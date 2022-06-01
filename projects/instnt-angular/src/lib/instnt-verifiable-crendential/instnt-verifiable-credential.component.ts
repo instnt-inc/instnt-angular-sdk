@@ -35,9 +35,7 @@ export class InstntVerifiableCredential implements OnInit, AfterViewInit {
                     .subscribe({
                         next:(res: any) => {
                             const response: InvitationResponse = res;
-                            console.log('res from get', response);
-                            // const invitation: any = await res.json();
-                            // console.log('invitation', invitation);
+                            this.service.credentialInvitation.next(response);
                         },
                         error: (err) => { console.error(err) }
                     });

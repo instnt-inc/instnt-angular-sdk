@@ -65,6 +65,14 @@
     </div>
   </mat-card>
 </div>
+<div class="flex-center">
+  <div>
+    <h2>Sign up with VC</h2>
+    <qrcode *ngIf="invitation" [qrdata]="invitation.invitation_url" [width]="286" [imageWidth]="80" [imageHeight]="80"
+      [errorCorrectionLevel]="'M'" [imageSrc]="dataService.instntLogoUrl"></qrcode>
+  </div>
+</div>
+
 
 <instnt-verifiable-credential [serviceURL]="dataService.serviceUrl" invitationType="verifier">
 </instnt-verifiable-credential>

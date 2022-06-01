@@ -38,6 +38,7 @@ export class SignupComponent implements OnInit {
     });
     this.instntService.getCredentialInvitation().subscribe((invitation) => {
       this.invitation = invitation;
+      console.log('invitation', this.invitation);
     })
 
   }

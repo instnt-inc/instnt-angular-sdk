@@ -18,6 +18,7 @@ export class DataService {
   docFrontUrl?: string;
   docBackUrl?: string;
   selfieUrl?: string;
+  instntLogoUrl: string = 'https://www.instnt.org/hubfs/Favicon.png';
 
   constructor() {
     this.formId = 'v1633477069641729';
