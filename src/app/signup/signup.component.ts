@@ -42,6 +42,7 @@ export class SignupComponent implements OnInit {
   }
 
   onSubmitInfo() {
+    this.instntService
     const data = {
       firstName: this.signUpForm.get('firstName')?.value,
       surName: this.signUpForm.get('lastName')?.value,

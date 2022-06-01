@@ -20,6 +20,7 @@ export class InstntSignupProviderComponent implements OnInit, AfterViewInit {
   @Input() children?: any;
   @Input() hideFormFields?: boolean = true;
   @Input() redirect?: boolean = false;
+  @Input() isAsync?: boolean = false;
   @ViewChild('innerDivElement') innerDivElement: ElementRef = new ElementRef(null);
   readonly idmetrics_version = '4.5.12'
 
@@ -31,6 +32,10 @@ export class InstntSignupProviderComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     (window as any).onInstntEvent = this.onEvent;
+    (window as any).instntSettings = {
+      isAsync: this.isAsync,
+      onEvent: this.onEvent,
+    };
     // Load the jquery library from google ajax first.
     const jQueryFragment = document.createRange().createContextualFragment('<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>');
     this.innerDivElement.nativeElement.appendChild(jQueryFragment);

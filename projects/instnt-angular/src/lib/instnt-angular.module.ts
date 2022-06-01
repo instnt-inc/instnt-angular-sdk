@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { InstntSignupProviderComponent } from './instnt-signup-provider/instnt-signup-provider.component';
 import { InstntDocumentProcessorComponent } from './instnt-document-processor/instnt-document-processor.component';
 import { InstntSelfieProcessorComponent } from './instnt-selfie-processor/instnt-selfie-processor.component';
+import { InstntVerifiableCredential } from './instnt-verifiable-crendential/instnt-verifiable-credential.component';
 
 
 
@@ -12,7 +13,8 @@ import { InstntSelfieProcessorComponent } from './instnt-selfie-processor/instnt
     InstntAngularComponent,
     InstntSignupProviderComponent,
     InstntDocumentProcessorComponent,
-    InstntSelfieProcessorComponent
+    InstntSelfieProcessorComponent,
+    InstntVerifiableCredential,
   ],
   imports: [
     HttpClientModule
@@ -21,6 +23,7 @@ import { InstntSelfieProcessorComponent } from './instnt-selfie-processor/instnt
     InstntSignupProviderComponent,
     InstntDocumentProcessorComponent,
     InstntSelfieProcessorComponent,
+    InstntVerifiableCredential
   ]
 })
 export class InstntAngularModule { }

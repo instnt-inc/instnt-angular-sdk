@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Instnt, InstntImageProcessorProps, CaptureMode } from './interfaces/instnt.interface';
+import { Instnt, InstntImageProcessorProps, InvitationResponse } from './interfaces/instnt.interface';
 import { Observable, ReplaySubject } from 'rxjs';
 
 @Injectable({
@@ -9,6 +9,7 @@ import { Observable, ReplaySubject } from 'rxjs';
 export class InstntAngularService {
 
   instnt: ReplaySubject<Instnt> = new ReplaySubject(1);
+  credentialInvitation: ReplaySubject<InvitationResponse> = new ReplaySubject(1);
 
   constructor() {
 
@@ -16,6 +17,10 @@ export class InstntAngularService {
 
   getInstnt(): Observable<Instnt> {
     return this.instnt;
+  }
+
+  getCredentialInvitation(): Observable<InvitationResponse> {
+    return this.credentialInvitation;
   }
 
   instntImageProcessor(docProps: InstntImageProcessorProps) {

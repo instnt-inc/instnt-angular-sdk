@@ -15,14 +15,18 @@ export class EventHandlerService {
   DocumentCaptured: ReplaySubject<any> = new ReplaySubject(1);
   SubmitResult: ReplaySubject<any> = new ReplaySubject(1);
   constructor() {
-    this.eventHandler = (event: InstntEvent) => {
+    this.eventHandler = (event: InstntEvent | any) => {
       this.testInstnt = event
       console.log('event handler service', event);
-      const eventData = event.data;
-      switch (event.type) {
+      let eventData;
+      let eventType;
+      event.event_data ? eventData = event.event_data : eventData = event.data;
+      event.event_type ? eventType = event.event_type : eventData = event.type;
+      switch (eventType) {
         case EventType.TransactionInitiated:
-          const instntRef = event.data.instnt;
+          const instntRef = eventData.instnt;
           this.transactionInit.next(instntRef);
+          this.transactionInit.complete();
           break;
         case EventType.OTPSent:
           console.log('event type otp sent', event.type);
@@ -33,8 +37,8 @@ export class EventHandlerService {
           break;
         case EventType.OTPError:
           console.log('event type otp.error triggered', event);
-          this.OTPSent.error(event.data);
-          this.OTPVerified.error(event.data);
+          this.OTPSent.error(eventData);
+          this.OTPVerified.error(eventData);
           break;
         case EventType.DocumentCaptured:
           console.log('event type document.captured triggered', event);

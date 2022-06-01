@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Instnt, InstntAngularService } from 'projects/instnt-angular/src/public-api';
-import { firstValueFrom } from 'rxjs';
+import { firstValueFrom, lastValueFrom } from 'rxjs';
 import { DataService } from '../services/data.service';
 import { EventHandlerService } from '../services/event-handler.service';
 @Component({
@@ -32,17 +32,17 @@ export class HomePageComponent implements OnInit {
     this.isLoading = true;
     this.isInstntInitiated = true;
     firstValueFrom(this.handler.transactionInit).then((instntRef) => {
-      this.isLoading = false;
       console.log('Init Success', instntRef);
+      this.isLoading = false;
       this.router.navigate(['/sign-up'])
     });
-    setTimeout(() => {
-      if (this.isLoading) {
-        this.errorMsg = `There seems to have been an error while initiating Instnt, 
-      please verify your workflow ID and Service URL is correct then check your browser console logs for errors.`
-        this.isLoading = false;
-      }
-    }, 5000);
+    // setTimeout(() => {
+    //   if (this.isLoading) {
+    //     this.errorMsg = `There seems to have been an error while initiating Instnt, 
+    //   please verify your workflow ID and Service URL is correct then check your browser console logs for errors.`
+    //     this.isLoading = false;
+    //   }
+    // }, 5000);
   }
 
 }
