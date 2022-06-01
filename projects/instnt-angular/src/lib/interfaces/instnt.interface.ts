@@ -43,7 +43,11 @@ export interface DecisionResponseModel {
 
 export enum EventType {
     TransactionInitiated = 'transaction.initiated',
-    TransactionProcessed = 'transaction.processed',
+    TransactionSubmitted = 'transaction.submitted',
+    //TransactionProcessed = 'transaction.processed',
+    TransactionAccepted = 'transaction.accepted',
+    TransactionRejected = 'transaction.rejected',
+    TransactionReview = 'transaction.review',
     TransactionError = 'transaction.error',
     DocumentCaptured = 'document.captured',
     DocumentUploaded = 'document.uploaded',

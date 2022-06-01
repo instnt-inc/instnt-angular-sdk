@@ -48,7 +48,17 @@ export class EventHandlerService {
           console.log('event type documentCapture Canceled triggered', event);
           this.DocumentCaptured.next(event);
           break;
-        case EventType.TransactionProcessed:
+          case EventType.TransactionAccepted:
+          console.log('event type Transaction Proccessed', event);
+          this.SubmitResult.next(event);
+          this.SubmitResult.complete();
+          break;
+          case EventType.TransactionReview:
+          console.log('event type Transaction Proccessed', event);
+          this.SubmitResult.next(event);
+          this.SubmitResult.complete();
+          break;
+        case EventType.TransactionRejected:
           console.log('event type Transaction Proccessed', event);
           this.SubmitResult.next(event);
           this.SubmitResult.complete();

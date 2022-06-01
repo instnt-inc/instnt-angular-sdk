@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { DecisionResponseModel, Instnt, InstntAngularService } from 'projects/instnt-angular/src/public-api';
+import { DecisionResponseModel, Instnt, InstntAngularService, InvitationResponse } from 'projects/instnt-angular/src/public-api';
 import { firstValueFrom, lastValueFrom, ReplaySubject } from 'rxjs';
 import { DataService } from '../services/data.service';
 import { EventHandlerService } from '../services/event-handler.service';
@@ -17,12 +17,13 @@ export class SubmitFormComponent implements OnInit, OnDestroy {
   isServerError = false;
   instnt?: Instnt;
   isSubmited = false;
+  invitation?: InvitationResponse;
   constructor(private instntService: InstntAngularService, public data: DataService, private events: EventHandlerService) {
     this.instntService.getInstnt().subscribe((instnt) => {
       this.instnt = instnt;
       console.log('instnt', instnt);
-
     });
+    this.instntService.getCredentialInvitation().subscribe((invitation) => this.invitation = invitation);
   }
 
   ngOnInit(): void {
