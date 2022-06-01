@@ -22,6 +22,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import { SubmitFormComponent } from './submit-form/submit-form.component';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { DataService } from './services/data.service';
+import { QRCodeModule } from 'angularx-qrcode';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { DataService } from './services/data.service';
     MatInputModule,
     MatProgressSpinnerModule,
     MatExpansionModule,
-    MatGridListModule
+    MatGridListModule,
+    QRCodeModule
   ],
   providers: [ EventHandlerService, InstntAngularService, DataService ],
   bootstrap: [AppComponent]

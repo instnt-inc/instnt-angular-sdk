@@ -15,7 +15,7 @@ export class EventHandlerService {
   DocumentCaptured: ReplaySubject<any> = new ReplaySubject(1);
   SubmitResult: ReplaySubject<any> = new ReplaySubject(1);
   constructor() {
-    this.eventHandler = (event: InstntEvent | any) => {
+    this.eventHandler = (event: InstntEvent) => {
       this.testInstnt = event
       console.log('event handler service', event);
       let eventData;

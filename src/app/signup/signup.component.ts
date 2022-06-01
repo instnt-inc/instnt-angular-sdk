@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Instnt, InstntAngularService } from 'projects/instnt-angular/src/public-api';
+import { Instnt, InstntAngularService, InvitationResponse } from 'projects/instnt-angular/src/public-api';
 import { DataService } from '../services/data.service';
 import { EventHandlerService } from '../services/event-handler.service';
 
@@ -13,6 +13,7 @@ import { EventHandlerService } from '../services/event-handler.service';
 export class SignupComponent implements OnInit {
 
   instnt?: Instnt;
+  invitation?: InvitationResponse;
   errorMessage = 'instnt not instantiated, please start from the beginning';
 
   signUpForm: FormGroup;
@@ -35,6 +36,9 @@ export class SignupComponent implements OnInit {
       lastName: this.lastName,
       email: this.email,
     });
+    this.instntService.getCredentialInvitation().subscribe((invitation) => {
+      this.invitation = invitation;
+    })
 
   }
 
