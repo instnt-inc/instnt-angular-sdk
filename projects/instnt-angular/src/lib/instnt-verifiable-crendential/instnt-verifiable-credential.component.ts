@@ -7,15 +7,12 @@ import { Instnt, InvitationResponse } from '../interfaces/instnt.interface';
 @Component({
     selector: 'instnt-verifiable-credential',
     template: `
-  <div>
-    <img src="" alt="">
-  </div>
+  <div></div>
   `,
     styleUrls: []
 })
 export class InstntVerifiableCredential implements OnInit, AfterViewInit, OnDestroy {
 
-    //@Input() formId: string = '';
     @Input() serviceURL: string = '';
     @Input() invitationType: 'issuer' | 'verifier';
     @Input() action?: 'authenticate' | 'signup';
@@ -33,7 +30,6 @@ export class InstntVerifiableCredential implements OnInit, AfterViewInit, OnDest
                     `${this.serviceURL}/ssi/${this.invitationType}/${this.action === 'authenticate' ? 'auth/' : ''}invitation/${instnt.instnttxnid}/`)
                     .subscribe({
                         next:(res: any) => {
-                            console.log('got new invitation response', res);
                             const response: InvitationResponse = res;
                             this.service.credentialInvitation.next(response);
                             this.service.credentialInvitation.complete()

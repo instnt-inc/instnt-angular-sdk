@@ -22,7 +22,6 @@ export class InstntDocumentProcessorComponent implements OnInit {
   ngOnInit(): void {
     const captureDocument = (window as any).instnt.captureDocument;
     if ((window as any).instnt) {
-      //console.log('docCapture', documentCapture);
       if (!(window as any).instnt.captureDocument) {
         console.error('Document Capture is Null, please run instnt.initImageProcessor() before running instntImageProcessor(props)');
         console.error(`If error persist try running instntImageProcessor inside a setTimeout() function i.e.

@@ -29,7 +29,6 @@ export class SignupComponent implements OnInit {
     this.instntService.getInstnt().subscribe((instnt) => { 
       this.instnt = instnt; 
       this.errorMessage = ''
-      console.log('instnt', instnt);
      });
     this.signUpForm = new FormGroup({
       firstName: this.firstName,

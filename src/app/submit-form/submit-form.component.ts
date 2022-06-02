@@ -21,7 +21,6 @@ export class SubmitFormComponent implements OnInit, OnDestroy {
   constructor(private instntService: InstntAngularService, public data: DataService, private events: EventHandlerService) {
     this.instntService.getInstnt().subscribe((instnt) => {
       this.instnt = instnt;
-      console.log('instnt', instnt);
     });
     this.instntService.getCredentialInvitation().subscribe((invitation) => this.invitation = invitation);
   }
@@ -34,7 +33,6 @@ export class SubmitFormComponent implements OnInit, OnDestroy {
     lastValueFrom(this.events.SubmitResult).then((res) => {
       this.isServerError = false;
       this.isLoading = false;
-      console.log('result res', res);
       this.response = res.event_data;
     }).catch((err) => {
       console.error('Error Processing Transactions', err);

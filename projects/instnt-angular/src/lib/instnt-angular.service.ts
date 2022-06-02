@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Instnt, InstntImageProcessorProps, InvitationResponse } from './interfaces/instnt.interface';
-import { Observable, ReplaySubject } from 'rxjs';
+import { lastValueFrom, map, mapTo, Observable, ReplaySubject, take } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,9 +11,7 @@ export class InstntAngularService {
   instnt: ReplaySubject<Instnt> = new ReplaySubject(1);
   credentialInvitation: ReplaySubject<InvitationResponse> = new ReplaySubject(1);
 
-  constructor() {
-
-   }
+  constructor() {}
 
   getInstnt(): Observable<Instnt> {
     return this.instnt;
@@ -25,7 +23,7 @@ export class InstntAngularService {
 
   instntImageProcessor(docProps: InstntImageProcessorProps) {
     const documentCapture = (window as any).instnt.captureDocument;
-    if(!(window as any).instnt.captureDocument) {
+    if (!(window as any).instnt.captureDocument) {
       console.error('Document Capture is Null, please run instnt.initImageProcessor() before running instntImageProcessor(props)');
       console.error(`If error persist try running instntImageProcessor inside a setTimeout() function i.e.
       setTimeout(() => {
@@ -43,5 +41,5 @@ export class InstntAngularService {
     }
   }
 
-  
+
 }
