@@ -72,7 +72,7 @@ export class OtpVerificationComponent implements OnInit {
     const phone = '+1' + this.phoneVerifyForm.get('phone')?.value;
     this.dataService.setMobileNumber(phone);
     if (this.instnt?.otpVerification) {
-      const otpCode = this.otpVerifyForm.get('otpVerify')?.value;
+      const otpCode = this.otpVerifyForm.get('otpVerify')?.value.toString();
       this.instnt?.verifyOTP(phone, otpCode);
       firstValueFrom(this.handler.OTPVerified).then((data) => {
         this.isLoading = false,

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { EventType, Instnt, InstntEvent } from 'projects/instnt-angular/src/public-api';
+import { Instnt, InstntEvent } from 'projects/instnt-angular/src/public-api';
 import { ReplaySubject, Subject } from 'rxjs';
 
 @Injectable({
@@ -23,47 +23,51 @@ export class EventHandlerService {
       event.event_data ? eventData = event.event_data : eventData = event.data;
       event.event_type ? eventType = event.event_type : eventData = event.type;
       switch (eventType) {
-        case EventType.TransactionInitiated:
+        case 'transaction.initiated':
           const instntRef = eventData.instnt;
           this.transactionInit.next(instntRef);
           this.transactionInit.complete();
           break;
-        case EventType.OTPSent:
+        case 'otp.sent':
           console.log('event type otp sent', event.type);
           this.OTPSent.next(eventData);
           break;
-        case EventType.OTPVerified:
+        case 'otp.verified':
           this.OTPVerified.next(eventData);
           break;
-        case EventType.OTPError:
+        case 'otp.error':
           console.log('event type otp.error triggered', event);
           this.OTPSent.error(eventData);
           this.OTPVerified.error(eventData);
           break;
-        case EventType.DocumentCaptured:
+        case 'document.captured':
           console.log('event type document.captured triggered', event);
           this.DocumentCaptured.next(event);
           break;
-        case EventType.DocumentCaptureCancelled:
+        case 'document.capture-cancelled':
           console.log('event type documentCapture Canceled triggered', event);
           this.DocumentCaptured.next(event);
           break;
-          case EventType.TransactionAccepted:
+          case 'transaction.submitted':
+          console.log('event type Transaction Submitted', event);
+          this.SubmitResult.next(event);
+          break;
+          case 'transaction.accepted':
           console.log('event type Transaction Proccessed', event);
           this.SubmitResult.next(event);
           this.SubmitResult.complete();
           break;
-          case EventType.TransactionReview:
+          case 'transaction.review':
           console.log('event type Transaction Proccessed', event);
           this.SubmitResult.next(event);
           this.SubmitResult.complete();
           break;
-        case EventType.TransactionRejected:
+        case 'transaction.rejected':
           console.log('event type Transaction Proccessed', event);
           this.SubmitResult.next(event);
           this.SubmitResult.complete();
           break;
-        case EventType.TransactionError:
+        case 'transaction.error':
           console.log('event type Transaction Error', event);
           this.SubmitResult.error(event);
           this.SubmitResult.complete();
@@ -71,7 +75,7 @@ export class EventHandlerService {
           break;
         default:
           console.log("unhandled instnt event ", event);
-          this.OTPVerified.complete();
+          //this.OTPVerified.complete();
       }
 
     }

@@ -82,9 +82,11 @@
     </mat-card>
 </div>
 <div class="flex-center">
-    <h3>Response QR Code</h3>
-    <qrcode *ngIf="invitation" [qrdata]="invitation.invitation_url" [width]="286" [imageWidth]="80" [imageHeight]="80"
-      [errorCorrectionLevel]="'M'" [imageSrc]="data.instntLogoUrl"></qrcode>
-    <instnt-verifiable-credential [serviceURL]="data.serviceUrl" invitationType="issuer">
-    </instnt-verifiable-credential>
+    <div *ngIf="response">
+        <h3>Response QR Code</h3>
+        <qrcode *ngIf="invitation" [qrdata]="invitation.invitation_url" [width]="286" [imageWidth]="80"
+            [imageHeight]="80" [errorCorrectionLevel]="'M'" [imageSrc]="data.instntLogoUrl"></qrcode>
+        <instnt-verifiable-credential [serviceURL]="data.serviceUrl" invitationType="issuer">
+        </instnt-verifiable-credential>
+    </div>
 </div>

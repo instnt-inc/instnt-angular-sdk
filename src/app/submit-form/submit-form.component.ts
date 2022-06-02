@@ -34,7 +34,8 @@ export class SubmitFormComponent implements OnInit, OnDestroy {
     lastValueFrom(this.events.SubmitResult).then((res) => {
       this.isServerError = false;
       this.isLoading = false;
-      this.response = res.data;
+      console.log('result res', res);
+      this.response = res.event_data;
     }).catch((err) => {
       console.error('Error Processing Transactions', err);
       this.isLoading = false;

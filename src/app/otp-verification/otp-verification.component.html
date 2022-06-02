@@ -42,7 +42,7 @@
                 <form [formGroup]="otpVerifyForm" action="submit">
                     <mat-form-field class="full-width" appearance="fill">
                         <mat-label>Code</mat-label>
-                        <input type="number" matInput [formControl]="otpVerify" required>
+                        <input type="tel" matInput [formControl]="otpVerify" required>
                     </mat-form-field>
                     <div class="error-div-style" *ngIf="otpVerify.errors && (otpVerify.dirty || otpVerify.touched)">
                         <mat-error class="error-msg-style"

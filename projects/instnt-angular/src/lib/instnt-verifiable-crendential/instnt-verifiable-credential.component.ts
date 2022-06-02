@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
-import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
-import { first } from 'rxjs';
+import { AfterViewInit, Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { first, ReplaySubject } from 'rxjs';
 import { InstntAngularService } from '../instnt-angular.service';
 import { Instnt, InvitationResponse } from '../interfaces/instnt.interface';
 
@@ -13,7 +13,7 @@ import { Instnt, InvitationResponse } from '../interfaces/instnt.interface';
   `,
     styleUrls: []
 })
-export class InstntVerifiableCredential implements OnInit, AfterViewInit {
+export class InstntVerifiableCredential implements OnInit, AfterViewInit, OnDestroy {
 
     //@Input() formId: string = '';
     @Input() serviceURL: string = '';
@@ -24,23 +24,28 @@ export class InstntVerifiableCredential implements OnInit, AfterViewInit {
         this.invitationType = 'verifier';
     }
 
-    ngOnInit(): void { }
+    ngOnInit(): void {}
 
     ngAfterViewInit() {
         this.service.instnt.pipe(first()).subscribe((instnt: Instnt) => {
             if (this.serviceURL) {
-                console.log('calling ssi');
                 this.http.get(
                     `${this.serviceURL}/ssi/${this.invitationType}/${this.action === 'authenticate' ? 'auth/' : ''}invitation/${instnt.instnttxnid}/`)
                     .subscribe({
                         next:(res: any) => {
+                            console.log('got new invitation response', res);
                             const response: InvitationResponse = res;
                             this.service.credentialInvitation.next(response);
+                            this.service.credentialInvitation.complete()
                         },
                         error: (err) => { console.error(err) }
                     });
             }
         })
+    }
+
+    ngOnDestroy(): void {
+        this.service.credentialInvitation = new ReplaySubject<InvitationResponse>(1);
     }
 
 
