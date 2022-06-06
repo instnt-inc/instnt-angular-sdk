@@ -21,8 +21,8 @@ export class InstntSignupProviderComponent implements OnInit, AfterViewInit {
   @Input() hideFormFields?: boolean = true;
   @Input() redirect?: boolean = false;
   @Input() isAsync?: boolean = false;
+  @Input() idmetrics_version? = '4.5.12'
   @ViewChild('innerDivElement') innerDivElement: ElementRef = new ElementRef(null);
-  readonly idmetrics_version = '4.5.12'
 
   constructor(private http: HttpClient, private service: InstntAngularService) { }
 
