@@ -54,13 +54,6 @@ export class SignupComponent implements OnInit {
     this.router.navigate(['otp-verify']);
 
     console.log('instnt', this.instnt);
-    // test code bellow
-    // const userData = {
-    //   firstName: this.signUpForm.get('firstName')?.value,
-    //   surName: this.signUpForm.get('lastName')?.value,
-    //   email: this.signUpForm.get('email')?.value,
-    //   mobileNumber: '+18454213433',
-    // }
   }
 
 }
