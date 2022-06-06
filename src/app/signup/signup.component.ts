@@ -25,7 +25,6 @@ export class SignupComponent implements OnInit {
     public dataService: DataService,
     private instntService: InstntAngularService,
     private router: Router) {
-    console.log('service url:', this.dataService.serviceUrl);
     this.instntService.getInstnt().subscribe((instnt) => { 
       this.instnt = instnt; 
       this.errorMessage = ''
@@ -37,7 +36,6 @@ export class SignupComponent implements OnInit {
     });
     this.instntService.getCredentialInvitation().subscribe((invitation) => {
       this.invitation = invitation;
-      console.log('invitation', this.invitation);
     })
 
   }
