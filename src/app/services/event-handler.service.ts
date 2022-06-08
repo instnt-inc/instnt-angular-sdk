@@ -21,7 +21,7 @@ export class EventHandlerService {
       let eventData;
       let eventType;
       event.event_data ? eventData = event.event_data : eventData = event.data;
-      event.event_type ? eventType = event.event_type : eventData = event.type;
+      event.event_type ? eventType = event.event_type : eventType = event.type;
       switch (eventType) {
         case 'transaction.initiated':
           const instntRef = eventData.instnt;
