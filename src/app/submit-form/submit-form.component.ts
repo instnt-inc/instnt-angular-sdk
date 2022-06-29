@@ -22,6 +22,7 @@ export class SubmitFormComponent implements OnInit, OnDestroy {
     this.instntService.getInstnt().subscribe((instnt) => {
       this.instnt = instnt;
     });
+    console.log('subscribing to getCredentialInvitation');
     this.instntService.getCredentialInvitation().subscribe((invitation) => this.invitation = invitation);
   }
 

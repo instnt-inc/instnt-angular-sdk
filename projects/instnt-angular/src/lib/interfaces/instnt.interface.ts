@@ -1,21 +1,25 @@
 export interface Instnt {
-    base64toBlob: (b64Data: any, sliceSize: number) => {}
+    base64toBlob: (b64Data: any, sliceSize: number) => {},
     buildErrorMessage: (process: any, context: any, data: any, status: any) => {},
-    captureDocument: (documentType: string, documentSide: string, captureMode: string, autoUpload: boolean, documentSettings?: {}) => {}
-    captureSelfie: (captureMode: string, autoUpload: boolean, selfieSettings?: {}) => {}
+    captureDocument: (documentType: string, documentSide: string, captureMode: string, autoUpload: boolean, documentSettings?: {}) => {},
+    captureSelfie: (captureMode: string, autoUpload: boolean, selfieSettings?: {}) => {},
     documentVerification: true,
     emit: (event: any) => {},
+    endSignupSession: () => {},
     formKey: string,
     getToken: () => {},
     getTransactionStatus: (transaction_id: string) => {},
     init: () => {},
+    initBehaviosecSDK: () => {},
     initFingerprintJS: () => {},
     initImageProcessor: () => {},
     instnttxnid: string,
     load_scripts: (script_urls: string) => {},
     onEvent: (data: any) => {},
     otpVerification: true,
+    pollEvents: () => {},
     sendOTP: (mobileNumber: string) => {},
+    stopEventPolling: () => {},
     submitCustomForm: (data: any, redirect: string) => {},
     submitData: (data: {}, redirect: boolean) => {},
     uploadAttachment: (attachment: any, documentSide: any, isSelfie: boolean) => {},
