@@ -22,6 +22,7 @@ export class InstntSignupProviderComponent implements OnInit, AfterViewInit {
   @Input() redirect?: boolean = false;
   @Input() isAsync?: boolean = false;
   @Input() idmetrics_version? = '4.5.12'
+  @Input() instntId: string = '';
   @ViewChild('innerDivElement') innerDivElement: ElementRef = new ElementRef(null);
 
   constructor(private http: HttpClient, private service: InstntAngularService) { }
@@ -39,10 +40,14 @@ export class InstntSignupProviderComponent implements OnInit, AfterViewInit {
     // Load the jquery library from google ajax first.
     const jQueryFragment = document.createRange().createContextualFragment('<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>');
     this.innerDivElement.nativeElement.appendChild(jQueryFragment);
-    const payload = {
+    let payload: any = {
       form_key: this.formId,
       hide_form_fields: this.hideFormFields,
       redirect: this.redirect,
+    }
+    if(this.instntId) {
+      payload['instnttxnid'] = this.instntId;
+      payload['authorization_token'] = this.instntId;
     }
     if (this.serviceURL) {
       this.http.post(this.serviceURL + `/public/transactions?idmetrics_version=${this.idmetrics_version}`, payload).subscribe({
