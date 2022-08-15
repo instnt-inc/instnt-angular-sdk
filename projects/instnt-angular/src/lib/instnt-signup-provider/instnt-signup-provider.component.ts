@@ -57,7 +57,10 @@ export class InstntSignupProviderComponent implements OnInit, AfterViewInit {
           this.innerDivElement.nativeElement.appendChild(fragment);
           this.service.instnt.next((window as any).instnt)
         },
-        error: (err) => { console.error(err)}
+        error: (err) => { 
+          console.error(err);
+          this.service.instnt.error(err);
+        }
       });
     }
   }
