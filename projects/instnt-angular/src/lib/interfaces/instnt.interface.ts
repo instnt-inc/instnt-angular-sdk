@@ -18,11 +18,14 @@ export interface Instnt {
     verifyDocuments: (documentType: any) => {},
     verifyOTP: (mobileNumber: string, otpCode: string) => {},
 }
+
 export interface InstntEvent {
     event_type: string,
     event_data: any
     type?: string,
-    data?: any
+    data?: any,
+    id?: string,
+    reference?: string,
 }
 
 export interface DecisionResponseModel {
