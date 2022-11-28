@@ -56,9 +56,9 @@ export class SubmitFormComponent implements OnInit, OnDestroy {
       this.events.SubmitResult.unsubscribe();
       this.events.SubmitResult = new ReplaySubject(1);
       this.setObservable();
-      this.instnt?.submitData(this.data.userData, false);
+      this.instnt?.submitSignupData(this.data.userData);
     } else {
-      this.instnt?.submitData(this.data.userData, false);
+      this.instnt?.submitSignupData(this.data.userData);
     }
 
   }
