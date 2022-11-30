@@ -52,7 +52,7 @@ npm i @instnt/instnt-angular-js
 After installing the Instnt npm package, import Instnt's Angular Workflow component called **instnt-signup-provider** into your app module.
 
 ```sh
-import { Instnt, InstntAngularService } from 'projects/instnt-angular/src/public-api';
+import { Instnt, InstntAngularService } from 'projects/instnt-angular-sdk/src/public-api';
 ```
  Import the Instnt Angula module as in following example:
 

@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { DecisionResponseModel, Instnt, InstntAngularService, InvitationResponse } from 'projects/instnt-angular/src/public-api';
+import { DecisionResponseModel, Instnt, InstntAngularService, InvitationResponse } from 'projects/instnt-angular-sdk/src/public-api';
 import { firstValueFrom, lastValueFrom, ReplaySubject } from 'rxjs';
 import { DataService } from '../services/data.service';
 import { EventHandlerService } from '../services/event-handler.service';

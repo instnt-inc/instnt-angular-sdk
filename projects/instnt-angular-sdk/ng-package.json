@@ -1,6 +1,6 @@
 {
   "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
-  "dest": "../../dist/instnt-angular",
+  "dest": "../../dist/instnt-angular-sdk",
   "lib": {
     "entryFile": "src/public-api.ts"
   }
