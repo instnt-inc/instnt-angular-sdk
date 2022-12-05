@@ -4,7 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build && cd dist/instnt-angular-sdk && npm publish && ng build instnt-angular",
+    "build": "ng build",
+    "build-reference-app": "ng build instnt-angular",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
