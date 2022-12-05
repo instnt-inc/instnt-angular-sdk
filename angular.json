@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "instnt-angular-sdk": {
+    "instnt-angular": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -20,7 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/instnt-angular-sdk",
+            "outputPath": "dist/instnt-angular",
             "index": "reference-app/src/index.html",
             "main": "reference-app/src/main.ts",
             "polyfills": "reference-app/src/polyfills.ts",
@@ -73,10 +73,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "instnt-angular-sdk:build:production"
+              "browserTarget": "instnt-angular:build:production"
             },
             "development": {
-              "browserTarget": "instnt-angular-sdk:build:development"
+              "browserTarget": "instnt-angular:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -84,7 +84,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "instnt-angular-sdk:build"
+            "browserTarget": "instnt-angular:build"
           }
         },
         "test": {
@@ -108,7 +108,7 @@
         }
       }
     },
-    "instnt-angular": {
+    "instnt-angular-sdk": {
       "projectType": "library",
       "root": "projects/instnt-angular-sdk",
       "sourceRoot": "projects/instnt-angular-sdk/src",
