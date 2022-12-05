@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { WebcamImage } from 'ngx-webcam';
-import { Instnt, InstntAngularService,  } from 'projects/instnt-angular/src/public-api';
+import { Instnt, InstntAngularService,  } from 'projects/instnt-angular-sdk/src/public-api';
 import { DataService } from '../services/data.service';
 import { EventHandlerService } from '../services/event-handler.service';
 

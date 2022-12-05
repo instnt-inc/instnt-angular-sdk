@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "instnt-angular-sdk": {
+    "instnt-angular": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -20,7 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/instnt-angular-sdk",
+            "outputPath": "dist/instnt-angular",
             "index": "reference-app/src/index.html",
             "main": "reference-app/src/main.ts",
             "polyfills": "reference-app/src/polyfills.ts",
@@ -73,10 +73,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "instnt-angular-sdk:build:production"
+              "browserTarget": "instnt-angular:build:production"
             },
             "development": {
-              "browserTarget": "instnt-angular-sdk:build:development"
+              "browserTarget": "instnt-angular:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -84,7 +84,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "instnt-angular-sdk:build"
+            "browserTarget": "instnt-angular:build"
           }
         },
         "test": {
@@ -108,23 +108,23 @@
         }
       }
     },
-    "instnt-angular": {
+    "instnt-angular-sdk": {
       "projectType": "library",
-      "root": "projects/instnt-angular",
-      "sourceRoot": "projects/instnt-angular/src",
+      "root": "projects/instnt-angular-sdk",
+      "sourceRoot": "projects/instnt-angular-sdk/src",
       "prefix": "lib",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
-            "project": "projects/instnt-angular/ng-package.json"
+            "project": "projects/instnt-angular-sdk/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "projects/instnt-angular/tsconfig.lib.prod.json"
+              "tsConfig": "projects/instnt-angular-sdk/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "projects/instnt-angular/tsconfig.lib.json"
+              "tsConfig": "projects/instnt-angular-sdk/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -132,9 +132,9 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/instnt-angular/src/test.ts",
-            "tsConfig": "projects/instnt-angular/tsconfig.spec.json",
-            "karmaConfig": "projects/instnt-angular/karma.conf.js"
+            "main": "projects/instnt-angular-sdk/src/test.ts",
+            "tsConfig": "projects/instnt-angular-sdk/tsconfig.spec.json",
+            "karmaConfig": "projects/instnt-angular-sdk/karma.conf.js"
           }
         }
       }

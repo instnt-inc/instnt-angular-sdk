@@ -1,10 +1,10 @@
 {
   "name": "instnt-angular-sdk",
-  "version": "0.1.0",
+  "version": "1.0.2",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build && cd dist/instnt-angular-sdk && npm publish && ng build instnt-angular",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
