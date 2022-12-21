@@ -1,11 +1,12 @@
 version: 0.2
 phases:
-  install:
-    runtime-versions:
-      nodejs: 12
   pre_build:
     commands:
       - echo Running npm install
+      - n 14.18.3
+      - npm install
+      - npm install -g @angular/cli@14.2.10
+      - ng version
   build:
     commands:
       - echo "Starting build `date` in `pwd`"
