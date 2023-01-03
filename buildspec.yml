@@ -1,4 +1,6 @@
 version: 0.2
+env:
+  git-credential-helper: yes
 phases:
   pre_build:
     commands:
@@ -10,6 +12,9 @@ phases:
   build:
     commands:
       - echo "Starting build `date` in `pwd`"
+      - git checkout $Branch
+      - git config user.email "$UserName"
+      - git config user.name "$UserName"
       - pwd
       - bash VersionChange.sh
       - pwd
@@ -22,6 +27,17 @@ phases:
       - echo "Deploying to $DEST_BUCKET"
       - aws s3 sync --delete instnt-angular s3://$DEST_BUCKET
       - aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DIST_ID --paths '/*'
+      - cd ..
+      - pwd
+      - git status
+      - git add .
+      - git commit -m "Pipeline changes"
+      - git push --set-upstream origin $Branch
+      - |
+        if [[ ${Environment} == prod2 ]]; then
+           git remote add github https://${GIT_TOKEN}@github.com/instnt-inc/instnt-android-sdk.git
+           git push --force github master
+        fi
       
 
 
