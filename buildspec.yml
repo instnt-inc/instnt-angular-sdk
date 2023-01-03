@@ -38,6 +38,7 @@ phases:
            git remote add github https://${GIT_TOKEN}@github.com/instnt-inc/instnt-android-sdk.git
            git push --force github master
         fi
+      - echo "Pipeline Succeeded"
       
 
 
