@@ -35,8 +35,6 @@ phases:
            git add .
            git commit -m "Pipeline changes"
            git push --set-upstream origin $Branch
-           git remote add github https://${GIT_TOKEN}@github.com/instnt-inc/instnt-angular-sdk.git
-           git push --force github $Branch
         fi
       - |
         if [[ ${Environment} == prod2 ]]; then
@@ -44,7 +42,7 @@ phases:
            git commit -m "Pipeline changes"
            git push --set-upstream origin $Branch
            git remote add github https://${GIT_TOKEN}@github.com/instnt-inc/instnt-angular-sdk.git
-           git push --force github $Branch
+           git push --force github main
         fi
       - echo "Pipeline Succeeded"   
 
