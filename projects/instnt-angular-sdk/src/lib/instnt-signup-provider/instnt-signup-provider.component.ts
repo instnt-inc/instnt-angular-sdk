@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { SDK_VERSION } from '../version';
-import { ID_METRICS_VERSION } from '../version';
 import { InstntAngularService } from '../instnt-angular.service'
 
 @Component({
@@ -21,7 +20,7 @@ export class InstntSignupProviderComponent implements OnInit, AfterViewInit {
   // @Input() hideFormFields?: boolean = true;
   // @Input() redirect?: boolean = false;
   @Input() isAsync?: boolean = false;
-  @Input() idmetrics_version?= ID_METRICS_VERSION;
+  @Input() idmetrics_version?= "4.7.0"; // hardcoding temporarily as it will be coming from the application
   @Input() instntId: string = '';
   @ViewChild('innerDivElement') innerDivElement: ElementRef = new ElementRef(null);
 

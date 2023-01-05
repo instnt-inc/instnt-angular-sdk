@@ -3,6 +3,7 @@
   "version": "1.0.2",
   "scripts": {
     "ng": "ng",
+    "prebuild": "node -p \"'export const SDK_VERSION = ' + JSON.stringify(require('./projects/instnt-angular-sdk/package.json').version) + ';'\" > ./projects/instnt-angular-sdk/src/lib/version.ts",
     "start": "ng serve",
     "build": "ng build",
     "build-reference-app": "ng build instnt-angular",
