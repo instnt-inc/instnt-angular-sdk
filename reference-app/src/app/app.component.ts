@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { InstntAngularService } from 'projects/instnt-angular-sdk/src/public-api';
+import { InstntAngularService } from '@instnt/instnt-angular-sdk';
 import { EventHandlerService } from './services/event-handler.service';
 
 @Component({

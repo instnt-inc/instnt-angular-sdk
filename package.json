@@ -21,6 +21,7 @@
     "@angular/platform-browser": "~13.0.0",
     "@angular/platform-browser-dynamic": "~13.0.0",
     "@angular/router": "~13.0.0",
+    "@instnt/instnt-angular-sdk": "^1.0.2",
     "angularx-qrcode": "^13.0.15",
     "ngx-webcam": "^0.4.1",
     "rxjs": "~7.4.0",
