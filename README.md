@@ -43,7 +43,7 @@ This documentation covers the basics of Instnt Angular SDK implementation. Angul
 * To begin utilizing Instnt Angular SDK, open the terminal and enter the following command to install Instnt's Angular components:
 
 ```sh
-npm i @instnt/instnt-angular-js
+npm i @instnt/instnt-angular-sdk
 
 ```
 
