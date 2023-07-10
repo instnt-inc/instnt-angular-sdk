@@ -4,6 +4,10 @@ export interface UserData {
   firstName: string,
   surName: string,
   email: string,
+  physicalAddress: string,
+  city: string,
+  state: string,
+  zip: string,
   mobileNumber?: string,
 }
 
@@ -12,7 +16,7 @@ export interface UserData {
 })
 export class DataService {
 
-  formId: string;
+  formKey: string;
   serviceUrl: string;
   userData: UserData;
   docFrontUrl?: string;
@@ -21,22 +25,30 @@ export class DataService {
   instntLogoUrl: string = 'https://www.instnt.org/hubfs/Favicon.png';
 
   constructor() {
-    this.formId = 'v1633477069641729';
-    this.serviceUrl = 'https://dev-api.instnt.org';
+    this.formKey = 'v1648134849334794';
+    this.serviceUrl = 'https://sandbox-api.instnt.org';
     this.userData = {
       firstName: '',
       surName: '',
       email: '',
+      physicalAddress: '',
+      city: '',
+      state: '',
+      zip: '',
       mobileNumber: '',
     }
   }
 
-  public setUserData(firstName: string, lastName: string, email: string, mobileNumber: string) {
+  public setUserData(firstName: string, lastName: string, email: string, physicalAddress: string, city: string, state: string, zip: string, mobileNumber: string) {
     this.userData = {
       firstName,
       surName: lastName,
       email,
-      mobileNumber
+      physicalAddress,
+      city,
+      state,
+      zip,
+      mobileNumber,
     }
   }
 

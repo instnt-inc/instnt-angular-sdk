@@ -9,6 +9,7 @@
         {{ errorMessage }}
       </div>
       <form [formGroup]="signUpForm" action="submit">
+        <!-- First Name -->
         <mat-form-field class="full-width" appearance="fill">
           <mat-label>First Name</mat-label>
           <input type="text" matInput placeholder="John" [formControl]="firstName" required>
@@ -24,6 +25,7 @@
             *ngIf="firstName.errors && (firstName.dirty || firstName.touched) && firstName.errors['maxlength']">First
             name should not have more than 50 characters ({{ firstName.errors['maxlength'].actualLength }})</mat-error>
         </div>
+        <!-- Last Name -->
         <mat-form-field class="full-width" appearance="fill">
           <mat-label>Last Name</mat-label>
           <input type="text" matInput placeholder="Smith" [formControl]="lastName" required>
@@ -39,8 +41,9 @@
             *ngIf="lastName.errors && (lastName.dirty || lastName.touched) && lastName.errors['maxlength']">Last name
             should not have more than 50 characters ({{ lastName.errors['maxlength'].actualLength }})</mat-error>
         </div>
+        <!-- Email -->
         <mat-form-field class="full-width" appearance="fill">
-          <mat-label>email</mat-label>
+          <mat-label>Email</mat-label>
           <input type="email" matInput placeholder="username@instnt.com" [formControl]="email" required>
         </mat-form-field>
         <div class="error-div-style" *ngIf="email.errors && (email.dirty || email.touched)">
@@ -53,6 +56,65 @@
           <mat-error class="error-msg-style"
             *ngIf="email.errors && (email.dirty || email.touched) && email.errors['maxlength']">Email should not have
             more than 100 characters ({{ email.errors['maxlength'].actualLength }})</mat-error>
+        </div>
+        <!-- Address -->
+        <mat-form-field class="full-width" appearance="fill">
+          <mat-label>Address</mat-label>
+          <input type="text" matInput placeholder="123 St. " [formControl]="physicalAddress" required>
+        </mat-form-field>
+        <div class="error-div-style"
+          *ngIf="physicalAddress.errors && (physicalAddress.dirty || physicalAddress.touched)">
+          <mat-error class="error-msg-style"
+            *ngIf="physicalAddress.errors && (physicalAddress.dirty || physicalAddress.touched) && physicalAddress.errors['required']">Address
+            is required</mat-error>
+          <mat-error class="error-msg-style"
+            *ngIf="physicalAddress.errors && (physicalAddress.dirty || physicalAddress.touched) && physicalAddress.errors['maxlength']">Address
+            should not have more than 50 characters ({{ physicalAddress.errors['maxlength'].actualLength }})</mat-error>
+          <mat-error class="error-msg-style"
+            *ngIf="physicalAddress.errors && (physicalAddress.dirty || physicalAddress.touched) && physicalAddress.errors['pattern']">
+          Please enter a valid Address</mat-error>
+        </div>
+        <!-- City -->
+        <mat-form-field class="full-width" appearance="fill">
+          <mat-label>City</mat-label>
+          <input type="text" matInput placeholder="New York" [formControl]="city" required>
+        </mat-form-field>
+        <div class="error-div-style" *ngIf="city.errors && (city.dirty || city.touched)">
+          <mat-error class="error-msg-style"
+            *ngIf="city.errors && (city.dirty || city.touched) && city.errors['required']">City
+            is required</mat-error>
+          <mat-error class="error-msg-style"
+            *ngIf="city.errors && (city.dirty || city.touched) && city.errors['maxlength']">City
+            should not have more than 50 characters ({{ city.errors['maxlength'].actualLength }})</mat-error>
+        </div>
+        <!-- State -->
+        <mat-form-field class="full-width" appearance="fill">
+          <mat-label>State</mat-label>
+          <input type="text" matInput placeholder="Texas" [formControl]="state" required>
+        </mat-form-field>
+        <div class="error-div-style" *ngIf="state.errors && (state.dirty || state.touched)">
+          <mat-error class="error-msg-style"
+            *ngIf="state.errors && (state.dirty || state.touched) && state.errors['required']">State
+            is required</mat-error>
+          <mat-error class="error-msg-style"
+            *ngIf="state.errors && (state.dirty || state.touched) && state.errors['maxlength']">State
+            should not have more than 50 characters ({{ state.errors['maxlength'].actualLength }})</mat-error>
+        </div>
+        <!-- Zip -->
+        <mat-form-field class="full-width" appearance="fill">
+          <mat-label>Zip</mat-label>
+          <input type="zip" matInput placeholder="10010" [formControl]="zip" required>
+        </mat-form-field>
+        <div class="error-div-style" *ngIf="zip.errors && (zip.dirty || zip.touched)">
+          <mat-error class="error-msg-style"
+            *ngIf="zip.errors && (zip.dirty || zip.touched) && zip.errors['required']">Zip is required
+          </mat-error>
+          <mat-error class="error-msg-style"
+            *ngIf="zip.errors && (zip.dirty || zip.touched) && zip.errors['pattern']">Sorry, only letters (a-z),
+            numbers (0-9), plus sign (+) and periods (.) are allowed.</mat-error>
+          <mat-error class="error-msg-style"
+            *ngIf="zip.errors && (zip.dirty || zip.touched) && zip.errors['maxlength']">Zip should not have
+            more than 100 characters ({{ zip.errors['maxlength'].actualLength }})</mat-error>
         </div>
       </form>
     </mat-card-content>

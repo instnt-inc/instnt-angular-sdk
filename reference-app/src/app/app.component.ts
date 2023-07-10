@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { InstntAngularService } from 'projects/instnt-angular-sdk/src/public-api';
+import { InstntAngularService } from '@instnt/instnt-angular-sdk';
 import { EventHandlerService } from './services/event-handler.service';
 
 @Component({
@@ -8,8 +8,8 @@ import { EventHandlerService } from './services/event-handler.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  formId: string = 'v1639687041590101';
-  serviceURL: string = 'https://dev-api.instnt.org';
+  formKey: string = 'v1683136956836059';
+  serviceURL: string = 'https://sandbox-api.instnt.org';
   onEvent: any;
   children?: any;
 

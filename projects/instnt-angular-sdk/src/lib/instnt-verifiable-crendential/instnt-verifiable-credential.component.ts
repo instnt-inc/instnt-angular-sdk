@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { AfterViewInit, Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { first, ReplaySubject } from 'rxjs';
+import { ReplaySubject } from 'rxjs';
+import { take } from 'rxjs/operators';
 import { InstntAngularService } from '../instnt-angular.service';
 import { Instnt, InvitationResponse } from '../interfaces/instnt.interface';
 
@@ -24,7 +25,7 @@ export class InstntVerifiableCredential implements OnInit, AfterViewInit, OnDest
     ngOnInit(): void {}
 
     ngAfterViewInit() {
-        this.service.instnt.pipe(first()).subscribe((instnt: Instnt) => {
+        this.service.instnt.pipe(take(1)).subscribe((instnt: Instnt) => {
             if (this.serviceURL) {
                 this.http.get(
                     `${this.serviceURL}/ssi/${this.invitationType}/${this.action === 'authenticate' ? 'auth/' : ''}invitation/${instnt.instnttxnid}/`)

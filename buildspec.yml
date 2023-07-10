@@ -1,0 +1,50 @@
+version: 0.2
+env:
+  git-credential-helper: yes
+phases:
+  pre_build:
+    commands:
+      - echo Running npm install
+      - n 14.18.3
+      - npm install
+      - npm install -g @angular/cli@14.2.10
+      - ng version
+  build:
+    commands:
+      - echo "Starting build `date` in `pwd`"
+      - git checkout $Branch
+      - git config user.email "$UserName"
+      - git config user.name "$UserName"
+      - pwd
+      - bash VersionChange.sh
+      - pwd
+      - npm install
+      - npm run build-reference-app
+      - echo "Build completed on `date`"
+  post_build:
+    commands:
+      - pwd
+      - cd dist
+      - echo "Deploying to $DEST_BUCKET"
+      - aws s3 sync --delete instnt-angular s3://$DEST_BUCKET
+      - aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DIST_ID --paths '/*'
+      - cd ..
+      - pwd
+      - git status
+      - |
+        if [[ ${Environment} == dev2 ]]; then
+           git add .
+           git commit -m "Pipeline changes"
+           git push --set-upstream origin $Branch
+        fi
+      - |
+        if [[ ${Environment} == prod2 ]]; then
+           git add .
+           git commit -m "Pipeline changes"
+           git push --set-upstream origin $Branch
+           git remote add github https://${GIT_TOKEN}@github.com/instnt-inc/instnt-angular-sdk.git
+           git push --force github main
+        fi
+      - echo "Pipeline Succeeded"   
+
+

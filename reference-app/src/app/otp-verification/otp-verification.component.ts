@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Instnt, InstntAngularService } from 'projects/instnt-angular-sdk/src/public-api';
+import { Instnt, InstntAngularService } from '@instnt/instnt-angular-sdk';
 import { firstValueFrom, lastValueFrom, map, Observable, pipe, Subject } from 'rxjs';
 import { DataService } from '../services/data.service';
 import { EventHandlerService } from '../services/event-handler.service';

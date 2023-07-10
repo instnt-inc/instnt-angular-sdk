@@ -29,7 +29,8 @@ export class InstntSelfieProcessorComponent implements OnInit {
           this.intntService.instntImageProcessor(props);
         }, 4000);`)
       } else {
-        captureSelfie(this.captureMode, this.autoUpload, this.captureFrameworkDebug);
+        const selfieSettings = { captureMode: this.captureMode }
+        captureSelfie(selfieSettings, this.autoUpload, this.captureFrameworkDebug);
       }
     } else {
       console.error('instnt is Null, please make sure to instantiate instnt by using the <instnt-signup-provider> component');

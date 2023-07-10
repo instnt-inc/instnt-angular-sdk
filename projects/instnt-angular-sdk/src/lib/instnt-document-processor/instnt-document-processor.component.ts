@@ -29,7 +29,8 @@ export class InstntDocumentProcessorComponent implements OnInit {
         this.intntService.instntImageProcessor(props);
       }, 4000);`)
       } else {
-        captureDocument(this.documentType, this.documentSide, this.captureMode, this.autoUpload, this.captureFrameworkDebug);
+        const documentSettings = { documentType: this.documentType, documentSide: this.documentSide, captureMode: this.captureMode }
+        captureDocument(documentSettings, this.autoUpload, this.captureFrameworkDebug);
       }
     } else {
       console.error('instnt is Null, please make sure to instantiate instnt by using the <instnt-signup-provider> component');

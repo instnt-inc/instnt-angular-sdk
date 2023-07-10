@@ -20,7 +20,10 @@ body {
 }
 
 mat-card {
+    margin: auto;
+    width: clamp(480px, 60%, 860px);
     margin-top: 20px;
+
 }
 
 .full-width {

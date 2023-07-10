@@ -12,7 +12,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class InstntAngularComponent implements OnInit {
 
-  @Input() formId: string = '';
+  @Input() formKey: string = '';
   constructor() { }
 
   ngOnInit(): void {

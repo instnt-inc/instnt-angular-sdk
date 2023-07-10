@@ -1,8 +1,9 @@
 {
   "name": "instnt-angular-sdk",
-  "version": "1.0.2",
+  "version": "2.0.0-beta.0",
   "scripts": {
     "ng": "ng",
+    "prebuild": "node -p \"'export const SDK_VERSION = ' + JSON.stringify(require('./projects/instnt-angular-sdk/package.json').version) + ';'\" > ./projects/instnt-angular-sdk/src/lib/version.ts",
     "start": "ng serve",
     "build": "ng build",
     "build-reference-app": "ng build instnt-angular",
@@ -21,6 +22,7 @@
     "@angular/platform-browser": "~13.0.0",
     "@angular/platform-browser-dynamic": "~13.0.0",
     "@angular/router": "~13.0.0",
+    "@instnt/instnt-angular-sdk": "2.0.0-beta.2",
     "angularx-qrcode": "^13.0.15",
     "ngx-webcam": "^0.4.1",
     "rxjs": "~7.4.0",

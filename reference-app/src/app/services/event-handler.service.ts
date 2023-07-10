@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Instnt, InstntEvent } from 'projects/instnt-angular-sdk/src/public-api';
+import { Instnt, InstntEvent } from '@instnt/instnt-angular-sdk';
 import { ReplaySubject, Subject } from 'rxjs';
 
 @Injectable({

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { InstntAngularModule, InstntAngularService } from 'projects/instnt-angular-sdk/src/public-api';
+import { InstntAngularModule, InstntAngularService } from '@instnt/instnt-angular-sdk';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';

@@ -7,6 +7,11 @@
                 <mat-list-item><span><b>First Name:</b> {{ data.userData.firstName }}</span></mat-list-item>
                 <mat-list-item><span><b>Last Name:</b> {{ data.userData.surName }}</span></mat-list-item>
                 <mat-list-item><span><b>Email:</b> {{ data.userData.email }}</span></mat-list-item>
+                <mat-list-item><span><b>Address:</b> {{ data.userData.physicalAddress }}</span></mat-list-item>
+                <mat-list-item><span><b>City:</b> {{ data.userData.city }}</span></mat-list-item>
+                <mat-list-item><span><b>State:</b> {{ data.userData.state }}</span></mat-list-item>
+                <mat-list-item><span><b>Zip:</b> {{ data.userData.zip }}</span></mat-list-item>
+
                 <mat-list-item><span><b>Mobile Number:</b> {{ data.userData.mobileNumber }}</span></mat-list-item>
             </mat-list>
             <mat-grid-list *ngIf="instnt && instnt.documentVerification" cols="2" rowHeight="2:1.3">
